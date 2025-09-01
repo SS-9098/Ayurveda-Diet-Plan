@@ -1,0 +1,471 @@
+name,type,season_tags,Vata,Pitta,Kapha,calories,protein_g,fat_g,carb_g,sugar_g,sodium_mg,satfat_g,incompatible_with
+Rice_1,legume,"['Autumn', 'Monsoon', 'Winter']",1,0,0,292,11.3,13.0,63.0,16.1,156,8.7,['Lemon_4']
+Wheat_1,beverage,['Autumn'],1,3,0,72,3.0,8.1,67.1,11.6,276,9.4,"['Bottle Gourd_1', 'Green Tea_1', 'Chana Dal_3']"
+Roti_1,beverage,"['Summer', 'Winter', 'Spring']",3,3,3,398,20.9,14.6,29.2,10.3,75,7.8,"['Tomato_8', 'Orange_3', 'Beetroot_3']"
+Chapati_1,dairy,['Autumn'],0,2,3,271,18.0,3.9,62.6,6.5,247,9.6,"['Coconut_7', 'Broccoli_2', 'Cucumber_6']"
+Kitchari_1,vegetable,"['EarlyWinter', 'Autumn', 'Monsoon']",3,2,3,316,2.0,4.7,54.6,4.7,125,9.7,"['Upma_9', 'Oats_10']"
+Moong Dal_1,legume,"['Spring', 'Summer', 'Winter']",3,0,3,287,17.5,18.7,53.9,2.4,225,0.7,"['Idli_8', 'Oats_7']"
+Chana Dal_1,vegetable,['LateWinter'],0,2,1,189,17.4,17.2,21.5,15.0,321,6.6,"['Chapati_5', 'Curd_9', 'Ghee_2']"
+Lentils_1,spice,['EarlyWinter'],2,1,0,334,22.0,12.2,31.4,5.8,272,1.4,[]
+Oats_1,dairy,['Autumn'],3,0,0,215,7.9,14.1,29.7,13.0,73,3.5,"['Wheat_8', 'Jaggery_8', 'Butter_1']"
+Idli_1,grain,"['LateWinter', 'Winter']",2,1,3,303,15.9,16.3,21.3,6.2,32,5.5,['Lemon_7']
+Dosa_1,fat,"['EarlyWinter', 'Summer']",0,3,3,244,21.4,15.3,38.9,0.3,193,7.0,[]
+Upma_1,dairy,['Spring'],2,1,2,242,11.5,7.6,37.8,1.9,267,5.8,"['Green Tea_10', 'Cucumber_3']"
+Vegetable Sabzi_1,grain,"['Spring', 'EarlyWinter', 'Autumn']",2,0,3,245,0.9,14.5,59.9,0.1,425,9.1,"['Beetroot_7', 'Peanuts_10']"
+Paneer_1,spice,['Spring'],0,0,1,248,10.3,16.3,56.4,6.9,448,6.7,"['Lentils_9', 'Bottle Gourd_3']"
+Milk_1,beverage,"['EarlyWinter', 'Winter']",2,0,1,178,2.1,10.3,36.5,4.6,27,9.6,[]
+Curd_1,grain,"['Spring', 'Summer']",3,3,0,309,11.7,17.4,29.6,15.5,20,6.8,[]
+Ghee_1,fat,"['Spring', 'Monsoon', 'EarlyWinter']",1,0,1,247,1.6,8.0,18.6,4.4,100,1.7,"['Chia Seeds_10', 'Tomato_4']"
+Butter_1,fat,['LateWinter'],1,3,2,333,11.2,1.3,56.2,9.2,465,2.4,[]
+Coconut_1,fruit,['Autumn'],0,2,1,378,21.8,0.1,42.1,14.3,389,4.8,[]
+Spinach_1,dairy,"['EarlyWinter', 'Summer']",0,2,0,119,2.7,11.3,60.6,12.7,312,6.2,['Sesame Seeds_3']
+Carrot_1,legume,"['Spring', 'Autumn', 'Summer']",2,1,0,129,9.4,6.7,36.2,18.3,250,8.3,"['Pineapple_6', 'Pineapple_3']"
+Beetroot_1,fruit,"['Summer', 'LateWinter', 'Monsoon']",3,1,0,161,16.8,16.9,24.7,6.1,409,3.3,[]
+Tomato_1,fruit,"['Summer', 'Monsoon']",2,3,1,145,6.5,10.6,60.7,13.4,459,0.4,['Chana Dal_8']
+Cucumber_1,fruit,['Spring'],3,1,3,237,17.4,9.3,62.7,1.1,217,1.0,"['Mango_1', 'Oats_1']"
+Bottle Gourd_1,fat,['Summer'],3,2,1,136,18.6,15.5,13.8,15.0,58,4.7,['Dosa_10']
+Pumpkin_1,fruit,['Autumn'],3,0,2,69,19.4,13.7,62.3,19.1,64,0.3,[]
+Cauliflower_1,fruit,['Summer'],3,3,3,397,1.6,17.9,31.5,11.7,91,6.5,[]
+Broccoli_1,vegetable,['LateWinter'],1,3,0,231,23.9,0.9,36.3,8.9,389,0.4,"['Pineapple_7', 'Dosa_9', 'Milk_6']"
+Apple_1,fruit,"['Monsoon', 'EarlyWinter']",2,3,2,143,14.2,18.5,15.7,15.7,365,0.8,['Moong Dal_1']
+Banana_1,fat,['Winter'],3,3,1,71,19.8,13.9,42.0,10.5,275,0.9,"['Guava_4', 'Milk_2']"
+Mango_1,spice,"['EarlyWinter', 'LateWinter', 'Autumn']",3,2,1,122,17.6,19.4,31.5,19.5,50,2.3,['Carrot_5']
+Guava_1,fat,"['Spring', 'Monsoon', 'Summer']",2,2,1,105,4.4,7.0,34.4,17.4,424,2.3,"['Pineapple_5', 'Curd_3', 'Beetroot_8']"
+Papaya_1,beverage,"['LateWinter', 'EarlyWinter']",3,1,3,358,19.5,17.9,12.1,6.2,462,4.7,"['Vegetable Sabzi_4', 'Pineapple_10', 'Honey_9']"
+Pineapple_1,vegetable,"['Summer', 'EarlyWinter']",0,1,2,232,12.7,14.2,44.4,18.1,77,1.1,"['Peanuts_3', 'Milk_8', 'Milk_3']"
+Orange_1,fruit,['Monsoon'],2,1,1,129,22.6,16.6,19.1,11.6,380,1.3,[]
+Lemon_1,grain,"['Monsoon', 'Winter']",1,0,3,214,1.1,4.7,57.6,2.2,138,6.4,['Wheat_3']
+Herbal Tea_1,fruit,['Winter'],3,1,0,162,6.9,7.1,57.9,11.5,305,9.9,['Guava_9']
+Green Tea_1,vegetable,['Winter'],3,1,0,396,17.9,12.1,53.5,9.8,47,6.6,['Honey_5']
+Spices Mix_1,spice,"['LateWinter', 'Autumn', 'Winter']",1,1,1,340,12.0,15.0,18.3,1.2,90,6.5,['Kitchari_5']
+Honey_1,beverage,['Summer'],2,0,3,118,9.5,18.0,17.5,17.5,229,2.9,[]
+Jaggery_1,fruit,"['EarlyWinter', 'Summer']",2,2,3,281,20.0,0.1,29.8,11.5,5,6.9,[]
+Peanuts_1,fat,"['LateWinter', 'Monsoon', 'Autumn']",1,3,0,132,23.0,14.1,11.5,13.6,480,6.9,[]
+Almonds_1,vegetable,['LateWinter'],2,1,0,137,17.2,10.5,13.6,13.0,214,1.0,[]
+Cashews_1,grain,['LateWinter'],1,2,2,53,11.3,9.6,38.8,19.2,99,2.3,"['Lemon_10', 'Orange_10']"
+Walnuts_1,grain,"['Winter', 'Autumn', 'Spring']",0,3,3,296,6.4,11.8,16.7,19.1,108,2.0,['Pumpkin_10']
+Sesame Seeds_1,spice,['Spring'],1,3,3,299,1.9,6.2,66.6,9.2,485,7.4,[]
+Chia Seeds_1,dairy,"['Autumn', 'Spring']",3,2,0,335,5.2,19.1,55.9,19.3,482,9.6,"['Oats_5', 'Pumpkin_10', 'Ghee_6']"
+Rice_2,beverage,"['Summer', 'Winter']",0,0,2,290,15.3,8.8,42.4,12.6,250,7.3,"['Chia Seeds_3', 'Tomato_4', 'Milk_3']"
+Wheat_2,fat,"['EarlyWinter', 'Spring', 'LateWinter']",1,2,2,226,3.9,15.3,16.4,4.3,99,2.6,[]
+Roti_2,beverage,"['Winter', 'LateWinter', 'Monsoon']",1,0,1,336,23.2,10.3,27.8,0.0,321,9.8,"['Chapati_10', 'Idli_7', 'Wheat_4']"
+Chapati_2,beverage,"['Summer', 'Monsoon', 'Autumn']",2,0,1,273,24.3,5.3,28.3,12.3,81,3.6,[]
+Kitchari_2,beverage,"['Monsoon', 'EarlyWinter']",3,0,3,152,15.4,13.4,48.5,5.1,226,0.7,"['Cashews_10', 'Idli_7']"
+Moong Dal_2,vegetable,['Spring'],1,1,0,328,15.0,16.9,6.6,16.1,2,6.6,"['Oats_10', 'Wheat_6']"
+Chana Dal_2,beverage,"['Summer', 'Autumn']",2,0,3,392,24.9,10.4,26.0,9.9,374,9.0,"['Broccoli_3', 'Upma_3']"
+Lentils_2,fruit,['Spring'],3,0,1,68,15.1,3.5,18.4,8.5,396,4.7,"['Banana_10', 'Green Tea_6']"
+Oats_2,vegetable,"['Spring', 'Autumn']",3,1,1,127,11.3,12.3,65.1,1.1,59,0.2,"['Peanuts_3', 'Cashews_3', 'Curd_5']"
+Idli_2,fat,['Spring'],0,3,3,311,24.4,17.2,22.9,15.7,285,0.8,['Banana_10']
+Dosa_2,beverage,"['Monsoon', 'Winter']",2,3,2,355,22.6,1.7,42.9,5.7,456,2.4,['Roti_9']
+Upma_2,legume,"['Monsoon', 'Summer']",2,0,2,214,19.2,6.9,60.0,14.8,75,2.0,[]
+Vegetable Sabzi_2,grain,['LateWinter'],2,0,1,345,5.7,17.0,35.6,14.6,57,5.2,"['Vegetable Sabzi_4', 'Almonds_5']"
+Paneer_2,fruit,"['Monsoon', 'Spring']",3,2,1,59,14.2,9.4,13.3,15.8,70,6.5,[]
+Milk_2,fat,"['Monsoon', 'Summer', 'LateWinter']",1,3,1,364,18.8,2.4,59.6,5.3,177,0.2,"['Beetroot_5', 'Pumpkin_9']"
+Curd_2,spice,"['Monsoon', 'Winter']",0,3,1,56,6.7,2.8,22.9,4.2,335,2.2,"['Spinach_1', 'Broccoli_7', 'Coconut_10']"
+Ghee_2,legume,"['EarlyWinter', 'Spring']",3,1,0,302,7.2,16.9,10.2,2.4,208,2.3,['Guava_8']
+Butter_2,grain,"['Monsoon', 'Winter']",1,2,0,251,14.7,16.4,16.6,11.2,331,6.6,"['Honey_3', 'Vegetable Sabzi_1']"
+Coconut_2,grain,"['Spring', 'Monsoon', 'Summer']",0,0,3,145,9.3,17.9,42.0,13.4,248,3.3,"['Chapati_1', 'Curd_1']"
+Spinach_2,grain,"['Summer', 'EarlyWinter']",1,1,2,89,16.7,9.1,68.2,5.7,70,9.0,"['Jaggery_7', 'Cucumber_4']"
+Carrot_2,fruit,"['Winter', 'EarlyWinter']",1,1,0,71,1.9,17.3,10.9,18.3,271,8.8,"['Broccoli_6', 'Chana Dal_10']"
+Beetroot_2,dairy,"['Autumn', 'EarlyWinter']",0,2,1,129,8.4,17.7,35.1,18.1,304,0.6,"['Lentils_8', 'Chia Seeds_8', 'Cucumber_8']"
+Tomato_2,fruit,"['Summer', 'Autumn', 'LateWinter']",3,0,1,205,4.4,4.1,14.6,14.0,454,4.5,[]
+Cucumber_2,legume,"['Spring', 'EarlyWinter', 'Winter']",0,1,3,98,19.5,3.5,31.8,11.5,19,6.9,['Cucumber_10']
+Bottle Gourd_2,dairy,"['Summer', 'LateWinter', 'Autumn']",3,1,1,189,19.0,5.1,16.8,13.3,266,4.0,[]
+Pumpkin_2,fat,"['EarlyWinter', 'Winter']",3,1,1,386,4.2,19.1,54.6,12.9,328,5.4,['Oats_9']
+Cauliflower_2,spice,"['Summer', 'EarlyWinter', 'Monsoon']",3,2,0,180,1.8,0.5,44.6,13.5,28,5.6,['Kitchari_1']
+Broccoli_2,fat,"['EarlyWinter', 'Spring', 'Monsoon']",1,3,3,115,9.7,7.8,29.1,18.9,252,4.4,['Moong Dal_5']
+Apple_2,spice,['Monsoon'],3,0,2,196,23.0,0.7,53.4,1.3,208,3.5,"['Green Tea_1', 'Spices Mix_9']"
+Banana_2,spice,"['EarlyWinter', 'Summer']",1,3,1,98,24.1,1.2,32.8,17.6,32,2.4,['Spices Mix_6']
+Mango_2,legume,"['Summer', 'LateWinter']",0,3,1,157,19.8,9.8,19.7,4.8,311,3.0,['Lentils_10']
+Guava_2,fruit,"['Monsoon', 'Spring', 'EarlyWinter']",2,3,2,189,19.0,6.5,24.6,11.7,217,0.2,[]
+Papaya_2,fat,['LateWinter'],0,0,2,305,9.3,5.0,18.3,16.9,254,0.8,['Honey_2']
+Pineapple_2,vegetable,['Autumn'],1,0,0,293,18.9,18.3,42.6,3.3,67,4.4,"['Rice_5', 'Upma_1', 'Orange_7']"
+Orange_2,grain,"['EarlyWinter', 'LateWinter']",2,1,3,115,17.9,3.5,48.8,14.5,137,2.5,"['Mango_4', 'Apple_10', 'Carrot_7']"
+Lemon_2,spice,"['Autumn', 'Spring', 'Winter']",3,1,3,309,15.3,5.3,61.1,18.0,19,0.5,"['Chapati_5', 'Coconut_1']"
+Herbal Tea_2,legume,"['Spring', 'Monsoon']",3,0,3,164,21.8,4.7,10.4,2.2,77,9.4,[]
+Green Tea_2,beverage,"['Autumn', 'Winter', 'Monsoon']",2,3,3,218,3.9,19.4,8.8,0.6,353,0.6,[]
+Spices Mix_2,fruit,"['Autumn', 'Summer', 'LateWinter']",1,3,0,393,21.8,15.2,38.2,15.8,77,8.5,"['Coconut_1', 'Milk_8']"
+Honey_2,grain,"['EarlyWinter', 'Summer', 'LateWinter']",0,1,1,350,18.6,6.0,58.8,9.9,328,4.7,"['Oats_10', 'Beetroot_4', 'Vegetable Sabzi_2']"
+Jaggery_2,vegetable,"['Winter', 'LateWinter', 'EarlyWinter']",1,1,1,242,1.6,15.5,68.3,9.8,40,4.4,"['Peanuts_5', 'Walnuts_3', 'Paneer_1']"
+Peanuts_2,beverage,['Spring'],3,0,3,53,19.1,7.1,6.4,16.2,167,9.0,[]
+Almonds_2,legume,"['EarlyWinter', 'Summer', 'Monsoon']",3,2,3,181,15.1,11.2,46.2,19.5,188,0.9,"['Dosa_7', 'Kitchari_1', 'Sesame Seeds_6']"
+Cashews_2,legume,"['Autumn', 'Summer']",0,2,1,99,9.8,7.2,30.8,0.3,449,2.3,[]
+Walnuts_2,fruit,"['Winter', 'LateWinter']",1,3,2,247,2.9,8.3,14.5,5.1,304,1.1,"['Mango_5', 'Oats_6']"
+Sesame Seeds_2,spice,"['LateWinter', 'Spring']",3,3,2,367,5.1,19.9,29.3,17.0,151,0.5,"['Lemon_8', 'Cucumber_8']"
+Chia Seeds_2,legume,"['Summer', 'LateWinter']",0,2,3,392,19.3,6.3,6.8,1.4,124,4.4,['Papaya_3']
+Rice_3,dairy,['Monsoon'],2,3,0,121,18.1,0.7,20.4,19.8,51,0.7,"['Cashews_3', 'Kitchari_7']"
+Wheat_3,fat,['LateWinter'],1,3,0,362,21.5,0.3,7.2,5.6,362,3.6,"['Sesame Seeds_5', 'Mango_8']"
+Roti_3,grain,['LateWinter'],3,2,3,193,11.3,12.5,12.7,5.2,282,6.6,['Kitchari_8']
+Chapati_3,fat,"['Winter', 'Autumn']",2,1,2,313,7.7,11.5,70.0,3.6,97,9.6,['Rice_2']
+Kitchari_3,fat,"['Summer', 'Winter']",1,1,0,98,8.3,16.1,28.8,15.7,32,2.6,[]
+Moong Dal_3,fruit,"['Monsoon', 'Summer']",0,2,3,171,22.7,4.0,18.6,11.3,115,4.5,[]
+Chana Dal_3,fruit,"['LateWinter', 'Monsoon', 'Summer']",2,3,0,368,21.9,11.6,47.5,9.9,357,6.2,"['Vegetable Sabzi_1', 'Sesame Seeds_8']"
+Lentils_3,beverage,"['Winter', 'EarlyWinter']",2,0,0,273,24.5,19.1,51.3,10.7,200,4.3,[]
+Oats_3,beverage,['Autumn'],3,3,3,398,8.6,14.5,53.3,14.3,449,9.5,[]
+Idli_3,dairy,['Winter'],1,3,2,333,16.9,3.5,59.4,11.4,89,1.4,[]
+Dosa_3,legume,"['Winter', 'Summer']",0,0,0,195,3.4,14.6,63.3,8.5,255,3.5,['Idli_1']
+Upma_3,dairy,"['Summer', 'Spring', 'Winter']",3,0,2,360,7.0,14.8,46.3,7.5,112,4.8,['Walnuts_4']
+Vegetable Sabzi_3,fat,"['Summer', 'LateWinter', 'Autumn']",1,1,0,152,21.1,3.8,25.5,18.4,385,6.8,['Coconut_8']
+Paneer_3,legume,['LateWinter'],3,3,0,199,22.3,6.9,30.7,18.3,274,4.8,['Butter_8']
+Milk_3,legume,['EarlyWinter'],0,1,3,297,13.5,19.8,62.5,16.5,225,4.1,[]
+Curd_3,fruit,"['Winter', 'EarlyWinter', 'Summer']",1,1,2,116,22.9,16.0,55.7,7.1,4,5.7,[]
+Ghee_3,fruit,['Autumn'],2,0,1,59,5.5,16.6,39.1,10.5,62,7.1,"['Honey_3', 'Dosa_5']"
+Butter_3,spice,['Spring'],2,2,2,111,6.8,8.7,47.7,15.4,183,4.7,[]
+Coconut_3,grain,"['Summer', 'LateWinter', 'EarlyWinter']",1,2,3,175,13.1,18.6,53.9,14.3,41,1.0,"['Oats_2', 'Idli_6', 'Oats_5']"
+Spinach_3,fat,['Spring'],2,3,3,191,16.1,2.9,28.6,3.5,339,4.9,['Wheat_10']
+Carrot_3,grain,"['LateWinter', 'Monsoon']",2,0,1,228,14.1,6.1,60.5,10.2,377,7.0,['Orange_10']
+Beetroot_3,fruit,"['LateWinter', 'Spring', 'Autumn']",3,3,2,262,21.0,2.7,66.8,15.8,118,8.3,"['Coconut_7', 'Apple_9']"
+Tomato_3,beverage,"['Summer', 'Autumn']",3,1,3,152,0.6,16.8,32.3,16.2,390,6.1,"['Chana Dal_5', 'Cashews_1', 'Cashews_9']"
+Cucumber_3,vegetable,"['Autumn', 'LateWinter']",0,1,0,168,13.6,17.3,66.6,2.5,232,3.4,['Papaya_7']
+Bottle Gourd_3,spice,"['EarlyWinter', 'Summer']",1,1,1,106,22.6,15.7,53.2,19.9,407,7.1,"['Carrot_3', 'Peanuts_10', 'Cashews_9']"
+Pumpkin_3,vegetable,"['Autumn', 'Winter', 'Summer']",2,0,2,273,13.3,14.4,63.1,9.9,451,0.1,"['Beetroot_8', 'Pumpkin_8']"
+Cauliflower_3,fat,['LateWinter'],1,0,2,148,1.5,13.3,49.1,2.7,376,7.9,['Idli_4']
+Broccoli_3,spice,['Autumn'],2,3,3,321,23.7,7.6,43.7,15.3,271,4.0,[]
+Apple_3,legume,"['Summer', 'EarlyWinter', 'Spring']",1,1,2,345,12.6,11.9,41.5,9.8,336,5.6,['Paneer_2']
+Banana_3,spice,['Spring'],3,2,1,343,21.0,15.8,42.1,8.9,462,4.5,"['Jaggery_6', 'Lemon_6', 'Apple_5']"
+Mango_3,grain,['LateWinter'],3,1,3,92,22.3,5.9,7.3,13.4,198,3.1,"['Kitchari_7', 'Spinach_4', 'Chapati_10']"
+Guava_3,grain,"['Autumn', 'Spring']",3,2,2,300,1.1,12.2,35.6,1.7,438,5.4,"['Cucumber_7', 'Spinach_5', 'Cashews_5']"
+Papaya_3,dairy,['LateWinter'],1,2,1,379,20.6,14.7,60.3,9.8,297,4.2,"['Cucumber_5', 'Idli_2']"
+Pineapple_3,dairy,"['Winter', 'EarlyWinter']",0,3,1,330,11.6,4.1,6.0,0.2,257,2.9,"['Kitchari_7', 'Cucumber_9', 'Idli_7']"
+Orange_3,fat,"['EarlyWinter', 'Spring']",1,3,3,377,7.7,16.7,66.4,12.8,488,6.9,['Banana_6']
+Lemon_3,spice,"['Monsoon', 'Spring']",1,0,3,273,21.6,0.1,18.3,1.8,73,1.4,"['Carrot_6', 'Sesame Seeds_10']"
+Herbal Tea_3,beverage,"['Autumn', 'Winter']",2,1,3,328,21.9,4.2,33.0,13.9,403,2.0,[]
+Green Tea_3,dairy,['Summer'],2,3,1,125,7.3,13.2,39.5,10.6,305,8.2,[]
+Spices Mix_3,beverage,['Spring'],0,2,3,129,19.2,12.8,32.7,6.5,352,7.6,"['Spices Mix_9', 'Wheat_3', 'Butter_7']"
+Honey_3,fruit,"['EarlyWinter', 'Autumn']",0,0,1,94,11.4,5.1,31.5,19.1,414,2.9,"['Lentils_2', 'Walnuts_8']"
+Jaggery_3,beverage,"['Spring', 'Autumn']",0,0,1,361,15.6,17.2,52.2,9.8,82,5.0,"['Honey_10', 'Herbal Tea_9', 'Ghee_10']"
+Peanuts_3,beverage,['Spring'],2,1,3,342,17.5,4.4,35.2,7.5,259,4.8,"['Almonds_10', 'Moong Dal_10', 'Apple_4']"
+Almonds_3,spice,"['LateWinter', 'Spring']",1,0,0,214,4.9,5.1,39.5,13.4,309,3.1,[]
+Cashews_3,grain,"['Spring', 'Winter']",0,2,0,292,5.0,12.3,39.6,13.5,34,1.2,[]
+Walnuts_3,fruit,['EarlyWinter'],2,0,1,117,7.8,5.7,31.5,5.6,170,3.9,['Sesame Seeds_5']
+Sesame Seeds_3,grain,"['Monsoon', 'Autumn']",3,2,0,150,21.6,11.0,24.3,10.2,277,9.9,"['Pumpkin_2', 'Milk_4']"
+Chia Seeds_3,dairy,"['LateWinter', 'Autumn']",0,2,3,249,14.3,1.5,57.8,11.4,285,7.9,['Honey_5']
+Rice_4,fruit,['LateWinter'],1,3,1,340,1.0,7.3,63.9,17.0,441,4.5,['Chana Dal_6']
+Wheat_4,fruit,"['EarlyWinter', 'Winter']",3,3,2,393,16.7,2.7,63.6,3.5,50,7.0,[]
+Roti_4,fruit,['EarlyWinter'],0,0,1,377,7.1,12.7,35.9,0.2,162,9.2,['Lentils_4']
+Chapati_4,grain,"['Spring', 'Autumn']",3,0,0,222,9.9,10.5,62.3,1.7,29,3.9,"['Chana Dal_1', 'Papaya_7', 'Guava_7']"
+Kitchari_4,fruit,"['Winter', 'Spring', 'LateWinter']",2,3,3,348,23.7,4.5,44.7,13.5,282,2.6,"['Ghee_5', 'Moong Dal_4']"
+Moong Dal_4,fat,"['Autumn', 'LateWinter', 'Winter']",3,0,2,386,5.8,12.3,58.1,10.9,5,5.3,"['Pumpkin_9', 'Lentils_3', 'Almonds_2']"
+Chana Dal_4,fruit,"['Spring', 'Summer']",0,1,2,337,14.9,13.3,11.7,8.6,209,2.2,"['Oats_2', 'Herbal Tea_2', 'Papaya_2']"
+Lentils_4,fruit,"['EarlyWinter', 'Spring']",1,0,0,122,13.8,11.6,54.6,9.0,113,5.9,['Green Tea_8']
+Oats_4,fruit,"['Monsoon', 'Spring', 'Autumn']",3,1,2,190,5.7,18.1,17.1,11.3,99,5.5,"['Peanuts_3', 'Sesame Seeds_5', 'Peanuts_4']"
+Idli_4,spice,"['LateWinter', 'Spring', 'Autumn']",3,2,0,270,8.9,13.3,29.2,5.0,486,8.3,"['Milk_2', 'Tomato_9', 'Idli_3']"
+Dosa_4,fat,"['Winter', 'Summer']",0,3,0,143,12.1,1.7,36.6,14.1,414,8.0,['Green Tea_2']
+Upma_4,legume,"['Summer', 'Winter']",1,1,1,345,12.7,0.0,65.6,1.7,263,2.1,[]
+Vegetable Sabzi_4,grain,['Autumn'],3,2,3,79,17.2,10.6,69.3,17.9,308,8.0,['Mango_1']
+Paneer_4,fat,"['LateWinter', 'Summer']",2,0,1,205,4.8,3.5,49.9,16.9,464,0.2,[]
+Milk_4,fat,['Winter'],2,2,1,138,8.1,3.3,17.7,7.2,241,5.6,[]
+Curd_4,vegetable,"['Winter', 'Autumn', 'LateWinter']",3,3,1,54,6.1,9.8,33.1,0.5,372,5.7,['Walnuts_7']
+Ghee_4,dairy,['Winter'],1,2,0,358,3.6,4.2,43.2,12.5,153,9.4,[]
+Butter_4,beverage,"['Monsoon', 'Autumn', 'Winter']",3,0,3,286,3.6,4.5,25.2,0.9,181,3.0,"['Jaggery_6', 'Chapati_2']"
+Coconut_4,fruit,"['EarlyWinter', 'Monsoon']",0,1,2,373,22.1,11.9,37.2,8.7,117,2.3,['Guava_9']
+Spinach_4,legume,['Monsoon'],2,1,3,92,20.7,9.6,10.7,1.0,48,3.5,"['Ghee_5', 'Chapati_9', 'Spices Mix_4']"
+Carrot_4,dairy,"['Spring', 'Autumn']",1,2,0,177,8.1,2.6,27.5,14.2,159,2.7,[]
+Beetroot_4,dairy,"['Winter', 'LateWinter', 'Monsoon']",2,1,2,306,4.0,19.3,63.2,19.6,249,0.2,"['Milk_4', 'Ghee_5', 'Spinach_2']"
+Tomato_4,vegetable,"['Autumn', 'Monsoon']",2,1,2,298,14.4,3.5,6.7,16.9,405,9.1,['Lemon_10']
+Cucumber_4,dairy,"['EarlyWinter', 'Summer', 'Monsoon']",2,0,1,194,8.4,4.0,45.2,19.3,496,2.3,[]
+Bottle Gourd_4,spice,"['Monsoon', 'EarlyWinter', 'Autumn']",2,3,3,213,0.6,17.5,30.4,16.2,497,6.6,"['Pineapple_8', 'Cauliflower_8', 'Almonds_9']"
+Pumpkin_4,beverage,['EarlyWinter'],0,1,2,86,13.1,8.4,12.8,7.6,447,9.1,[]
+Cauliflower_4,legume,"['Summer', 'Autumn']",3,0,3,58,12.9,18.8,6.6,5.1,413,7.7,"['Broccoli_10', 'Moong Dal_2', 'Butter_6']"
+Broccoli_4,legume,"['Autumn', 'LateWinter', 'Monsoon']",0,0,0,168,18.7,7.7,45.2,12.6,33,1.2,[]
+Apple_4,vegetable,"['LateWinter', 'Monsoon']",0,1,0,144,3.4,7.1,38.1,4.3,486,4.3,[]
+Banana_4,dairy,['EarlyWinter'],0,1,2,335,14.5,1.2,34.5,17.6,368,4.3,[]
+Mango_4,spice,"['Spring', 'Autumn', 'Monsoon']",1,2,1,302,13.0,11.6,30.2,3.4,150,9.7,"['Lentils_5', 'Papaya_3', 'Honey_10']"
+Guava_4,fruit,"['LateWinter', 'Spring', 'Autumn']",1,2,0,229,24.6,4.9,5.1,6.6,8,3.6,"['Oats_7', 'Wheat_6']"
+Papaya_4,spice,"['LateWinter', 'Summer']",1,1,2,90,12.0,5.1,21.2,0.0,312,5.2,"['Cucumber_5', 'Roti_4']"
+Pineapple_4,fruit,"['Autumn', 'Winter']",0,1,3,58,1.8,5.5,8.8,3.2,372,0.7,"['Roti_10', 'Guava_9', 'Curd_3']"
+Orange_4,fruit,['Winter'],2,2,0,158,14.6,13.6,69.7,11.5,238,4.7,['Lentils_7']
+Lemon_4,beverage,"['LateWinter', 'Summer', 'EarlyWinter']",0,2,2,393,20.2,12.1,12.2,19.7,14,5.8,"['Cauliflower_10', 'Vegetable Sabzi_4']"
+Herbal Tea_4,grain,"['Autumn', 'EarlyWinter']",2,1,0,296,23.7,10.6,47.1,0.9,329,0.4,"['Lentils_2', 'Banana_6', 'Almonds_6']"
+Green Tea_4,dairy,['Winter'],0,3,1,133,12.3,3.8,26.6,14.7,358,7.9,"['Cauliflower_2', 'Honey_3']"
+Spices Mix_4,grain,['Summer'],3,2,2,218,13.3,14.6,46.7,14.9,339,1.6,"['Chapati_6', 'Pumpkin_4', 'Dosa_1']"
+Honey_4,dairy,"['Winter', 'Spring', 'Summer']",2,2,2,170,2.7,11.2,39.6,5.5,371,6.7,[]
+Jaggery_4,vegetable,['EarlyWinter'],0,3,1,103,12.8,0.0,64.7,14.6,188,3.1,"['Tomato_2', 'Pineapple_6']"
+Peanuts_4,grain,"['Summer', 'Autumn', 'Winter']",1,2,3,362,18.3,8.8,52.1,12.8,318,8.0,"['Oats_7', 'Spinach_2']"
+Almonds_4,beverage,"['Winter', 'Spring', 'Monsoon']",1,3,3,344,18.3,18.5,47.2,6.7,331,3.0,['Guava_8']
+Cashews_4,beverage,['EarlyWinter'],1,2,1,301,2.7,18.4,17.7,3.6,448,8.2,"['Apple_2', 'Paneer_2', 'Broccoli_5']"
+Walnuts_4,fat,['Winter'],0,3,2,164,9.0,8.7,41.8,18.3,375,8.0,"['Roti_5', 'Spinach_1', 'Chapati_9']"
+Sesame Seeds_4,fat,"['Summer', 'Winter']",0,3,1,219,12.5,19.5,13.9,5.7,379,1.7,[]
+Chia Seeds_4,spice,"['Winter', 'Monsoon']",3,0,0,106,2.0,1.8,22.0,17.9,355,4.1,[]
+Rice_5,legume,"['Winter', 'EarlyWinter']",3,1,3,277,3.8,18.5,50.7,3.2,58,7.9,['Pineapple_10']
+Wheat_5,spice,"['Summer', 'Autumn']",3,0,2,260,5.3,12.1,40.4,2.6,394,4.3,[]
+Roti_5,legume,"['EarlyWinter', 'Winter']",2,1,1,104,7.3,7.8,58.7,7.1,351,8.3,['Rice_7']
+Chapati_5,vegetable,"['Spring', 'Autumn']",2,1,1,271,8.4,14.9,34.1,17.9,214,6.6,['Milk_2']
+Kitchari_5,spice,"['Summer', 'Autumn']",0,0,3,366,23.0,12.9,25.1,5.5,285,9.8,['Wheat_3']
+Moong Dal_5,vegetable,"['Monsoon', 'Winter', 'EarlyWinter']",1,3,3,313,21.4,11.6,35.2,14.5,75,1.8,[]
+Chana Dal_5,grain,"['Autumn', 'Summer', 'EarlyWinter']",1,1,3,373,0.9,18.9,30.5,16.9,445,3.7,"['Pineapple_4', 'Green Tea_9', 'Almonds_6']"
+Lentils_5,dairy,"['Winter', 'Monsoon']",2,3,2,304,6.0,14.9,34.1,10.2,472,3.4,"['Cashews_8', 'Lemon_5']"
+Oats_5,legume,['LateWinter'],0,0,1,368,1.9,15.5,51.3,7.5,435,0.3,[]
+Idli_5,fat,"['Spring', 'EarlyWinter', 'Autumn']",3,0,1,366,2.4,11.4,39.1,16.7,309,6.7,"['Cucumber_9', 'Apple_4', 'Oats_6']"
+Dosa_5,beverage,"['Spring', 'EarlyWinter', 'LateWinter']",2,1,1,84,7.2,9.5,38.1,5.8,268,4.8,['Oats_10']
+Upma_5,beverage,"['Winter', 'Summer', 'Spring']",2,2,2,182,21.0,14.2,35.0,1.7,273,2.1,"['Vegetable Sabzi_8', 'Upma_9']"
+Vegetable Sabzi_5,legume,"['EarlyWinter', 'Spring', 'LateWinter']",3,0,1,132,0.6,12.6,54.1,6.6,464,7.8,['Tomato_7']
+Paneer_5,fat,"['EarlyWinter', 'Autumn']",0,1,2,206,20.8,8.5,41.6,11.9,316,5.6,"['Mango_4', 'Ghee_2', 'Apple_3']"
+Milk_5,fruit,['EarlyWinter'],1,3,2,248,3.8,18.1,23.6,4.5,126,4.8,['Chia Seeds_4']
+Curd_5,spice,"['Monsoon', 'Autumn', 'Winter']",0,2,1,147,4.4,7.8,41.1,3.5,123,3.1,"['Roti_7', 'Bottle Gourd_3']"
+Ghee_5,fruit,"['LateWinter', 'EarlyWinter']",2,3,2,347,1.3,16.2,46.4,14.1,263,5.4,"['Moong Dal_2', 'Bottle Gourd_7', 'Spices Mix_6']"
+Butter_5,grain,"['Winter', 'Autumn']",3,1,3,91,18.7,9.8,58.8,5.3,129,8.7,[]
+Coconut_5,dairy,"['LateWinter', 'Winter']",3,0,3,324,6.5,5.4,19.0,2.7,425,3.0,[]
+Spinach_5,grain,"['LateWinter', 'Winter']",2,3,0,284,6.3,14.7,46.4,12.9,64,6.9,[]
+Carrot_5,spice,"['Spring', 'EarlyWinter', 'Monsoon']",2,2,0,244,19.8,18.6,7.4,17.4,329,3.8,"['Upma_1', 'Jaggery_2', 'Chapati_6']"
+Beetroot_5,dairy,['EarlyWinter'],0,3,0,301,9.5,14.6,16.5,8.1,70,3.1,['Jaggery_6']
+Tomato_5,fat,"['Summer', 'Autumn']",0,3,3,369,0.7,4.2,34.2,5.3,300,4.2,[]
+Cucumber_5,beverage,"['Spring', 'Winter']",3,1,3,105,7.2,3.8,37.0,1.6,448,4.2,['Banana_3']
+Bottle Gourd_5,dairy,['Winter'],2,1,0,111,12.8,1.3,64.1,16.3,106,7.4,"['Sesame Seeds_10', 'Jaggery_3', 'Sesame Seeds_5']"
+Pumpkin_5,spice,"['LateWinter', 'Autumn', 'Spring']",2,3,3,188,5.6,13.8,48.7,12.6,21,9.7,"['Mango_3', 'Walnuts_2', 'Honey_7']"
+Cauliflower_5,spice,"['Summer', 'Monsoon']",2,1,0,70,22.1,18.8,24.9,8.9,392,9.3,[]
+Broccoli_5,fruit,['Spring'],0,1,1,176,23.3,6.9,12.5,14.6,356,6.5,['Wheat_8']
+Apple_5,vegetable,"['Spring', 'Summer', 'EarlyWinter']",2,0,2,184,2.1,13.3,30.0,1.1,97,0.4,['Milk_8']
+Banana_5,spice,"['LateWinter', 'EarlyWinter']",3,1,2,209,5.1,18.9,68.0,19.8,280,0.7,[]
+Mango_5,legume,['LateWinter'],1,1,2,297,9.1,0.3,57.3,12.7,487,0.5,"['Green Tea_6', 'Dosa_4']"
+Guava_5,beverage,['Summer'],0,3,3,66,18.4,17.6,30.5,16.6,1,1.1,['Roti_9']
+Papaya_5,fat,"['EarlyWinter', 'Autumn', 'Spring']",0,2,0,246,3.5,3.7,64.2,8.1,133,6.0,[]
+Pineapple_5,dairy,"['Spring', 'Autumn', 'Summer']",1,3,0,345,11.3,18.2,40.4,9.4,120,9.8,['Pineapple_7']
+Orange_5,beverage,"['Spring', 'LateWinter']",2,3,0,355,9.7,17.5,55.4,19.9,126,7.2,[]
+Lemon_5,vegetable,"['Spring', 'Summer']",2,1,1,275,23.4,1.5,43.5,18.2,383,6.7,"['Wheat_3', 'Vegetable Sabzi_2']"
+Herbal Tea_5,dairy,"['Spring', 'Monsoon']",1,1,1,285,23.4,9.6,33.8,2.7,156,7.2,['Honey_1']
+Green Tea_5,grain,['Winter'],2,1,2,199,9.0,5.1,27.5,7.0,157,7.3,['Honey_10']
+Spices Mix_5,spice,"['Autumn', 'EarlyWinter']",0,1,0,137,3.9,8.9,34.3,3.8,88,0.5,"['Banana_5', 'Lentils_5', 'Sesame Seeds_8']"
+Honey_5,legume,['Autumn'],0,0,1,396,5.8,10.7,55.1,9.8,336,7.1,"['Pumpkin_6', 'Lemon_1']"
+Jaggery_5,vegetable,"['Summer', 'LateWinter', 'EarlyWinter']",1,3,3,265,9.9,0.9,35.8,16.4,38,10.0,['Sesame Seeds_6']
+Peanuts_5,beverage,['Spring'],2,0,2,73,11.8,11.9,11.0,15.0,390,5.4,"['Walnuts_9', 'Coconut_1']"
+Almonds_5,spice,"['EarlyWinter', 'Summer']",2,1,2,134,8.9,5.2,8.5,2.8,281,8.6,['Pumpkin_9']
+Cashews_5,dairy,['Summer'],2,0,1,270,8.5,19.0,21.0,6.6,115,2.7,"['Banana_1', 'Herbal Tea_3']"
+Walnuts_5,grain,"['EarlyWinter', 'Autumn', 'Spring']",3,1,1,245,7.4,18.3,17.2,11.8,150,7.9,"['Green Tea_10', 'Wheat_9', 'Bottle Gourd_6']"
+Sesame Seeds_5,legume,"['Winter', 'Spring', 'LateWinter']",2,0,1,165,0.6,14.3,35.4,8.7,113,0.2,['Curd_2']
+Chia Seeds_5,legume,"['EarlyWinter', 'Summer', 'LateWinter']",1,1,0,55,13.7,9.5,5.2,16.3,47,9.6,['Broccoli_7']
+Rice_6,fruit,['EarlyWinter'],0,0,1,303,1.7,2.8,46.7,20.0,103,4.1,"['Apple_7', 'Banana_5']"
+Wheat_6,beverage,['Autumn'],3,3,0,59,13.2,11.1,48.6,16.9,95,7.1,"['Almonds_6', 'Lentils_7', 'Cucumber_2']"
+Roti_6,dairy,"['EarlyWinter', 'LateWinter', 'Winter']",1,1,0,293,2.3,10.0,45.7,13.1,485,2.8,['Chana Dal_7']
+Chapati_6,spice,"['Autumn', 'LateWinter']",3,1,2,327,1.0,14.0,39.5,19.0,221,7.2,"['Coconut_3', 'Tomato_6']"
+Kitchari_6,vegetable,"['Autumn', 'Summer']",1,0,0,177,7.6,17.9,22.0,17.8,165,4.8,"['Idli_6', 'Chia Seeds_10', 'Almonds_8']"
+Moong Dal_6,legume,"['Summer', 'EarlyWinter']",1,3,2,221,15.6,1.5,16.3,18.0,353,8.4,"['Lentils_9', 'Walnuts_6']"
+Chana Dal_6,beverage,"['Autumn', 'Spring', 'Summer']",1,1,0,214,9.3,11.9,65.5,11.3,16,4.7,['Tomato_7']
+Lentils_6,fruit,['Autumn'],1,1,0,388,18.8,4.8,6.9,3.8,68,6.3,"['Broccoli_2', 'Upma_7', 'Coconut_4']"
+Oats_6,grain,"['Winter', 'Spring']",1,3,0,54,18.6,12.9,7.1,1.6,449,7.7,['Honey_8']
+Idli_6,dairy,"['LateWinter', 'Summer']",2,0,3,294,7.4,14.1,41.3,12.4,164,5.1,"['Butter_5', 'Herbal Tea_10']"
+Dosa_6,vegetable,"['Autumn', 'Monsoon']",0,0,0,63,1.3,5.3,64.6,2.5,174,4.4,['Milk_1']
+Upma_6,spice,['Winter'],1,2,1,199,5.9,13.1,9.6,18.4,377,8.1,[]
+Vegetable Sabzi_6,legume,"['Spring', 'Monsoon']",2,3,2,57,3.9,8.4,43.2,13.4,500,6.0,['Spices Mix_7']
+Paneer_6,grain,['Monsoon'],0,3,3,329,5.9,6.2,56.3,14.2,483,6.8,"['Broccoli_8', 'Paneer_7']"
+Milk_6,spice,['Autumn'],3,2,3,243,20.5,12.8,41.5,13.8,129,3.9,[]
+Curd_6,legume,['Monsoon'],3,2,2,193,16.7,7.5,13.6,5.9,110,0.0,['Idli_4']
+Ghee_6,vegetable,"['Summer', 'Autumn']",2,2,2,56,12.6,10.0,15.0,11.9,460,8.8,"['Lemon_10', 'Tomato_6']"
+Butter_6,spice,['Monsoon'],2,3,0,187,1.3,7.4,57.3,8.9,148,3.8,"['Milk_7', 'Wheat_9', 'Rice_2']"
+Coconut_6,spice,"['LateWinter', 'Summer', 'Spring']",3,3,2,316,15.0,0.8,48.4,13.6,128,8.7,"['Curd_10', 'Coconut_5', 'Beetroot_9']"
+Spinach_6,grain,['Summer'],3,1,0,149,8.1,16.1,6.1,14.1,310,3.2,['Sesame Seeds_5']
+Carrot_6,fat,"['Winter', 'Monsoon', 'Spring']",0,3,3,143,1.8,3.3,56.6,1.1,257,5.8,"['Banana_9', 'Tomato_5']"
+Beetroot_6,fruit,"['Winter', 'LateWinter']",3,2,2,226,11.0,16.0,15.6,12.4,498,3.0,[]
+Tomato_6,vegetable,"['Spring', 'LateWinter']",0,3,0,394,0.6,1.5,40.4,9.3,469,6.8,"['Milk_1', 'Rice_10']"
+Cucumber_6,grain,['Spring'],1,3,0,346,18.2,6.1,56.3,4.1,269,4.5,[]
+Bottle Gourd_6,legume,['Autumn'],0,2,3,76,5.9,10.3,64.7,14.1,449,3.0,['Sesame Seeds_10']
+Pumpkin_6,grain,['Autumn'],3,0,2,245,4.1,19.9,6.5,7.1,490,5.7,[]
+Cauliflower_6,spice,['Summer'],1,2,2,337,6.6,17.6,41.7,2.5,348,9.9,"['Dosa_5', 'Vegetable Sabzi_5']"
+Broccoli_6,grain,['Autumn'],2,0,3,369,16.9,7.1,58.0,3.6,284,2.3,['Curd_5']
+Apple_6,fat,"['Winter', 'Spring', 'Summer']",1,2,3,333,0.9,16.1,13.2,13.5,296,5.0,"['Walnuts_3', 'Guava_7', 'Cucumber_1']"
+Banana_6,fruit,"['Autumn', 'Spring']",3,2,0,268,8.3,17.5,66.4,7.1,355,4.1,"['Walnuts_4', 'Papaya_9']"
+Mango_6,spice,"['EarlyWinter', 'Spring', 'LateWinter']",1,1,3,379,13.7,7.1,16.7,18.9,460,1.8,[]
+Guava_6,dairy,"['Monsoon', 'Winter']",0,1,0,281,22.8,19.6,14.1,7.6,197,9.0,"['Idli_10', 'Carrot_2', 'Broccoli_4']"
+Papaya_6,fruit,"['Winter', 'Spring', 'Autumn']",1,0,0,306,0.5,8.0,14.5,0.8,85,3.1,"['Cashews_10', 'Lemon_10']"
+Pineapple_6,fruit,"['EarlyWinter', 'Spring', 'Autumn']",1,2,2,240,16.3,8.2,63.2,17.5,381,7.5,['Cauliflower_10']
+Orange_6,grain,"['LateWinter', 'Summer']",2,1,2,350,16.6,3.0,67.4,19.6,70,2.6,['Bottle Gourd_5']
+Lemon_6,fruit,['LateWinter'],2,3,2,387,8.2,3.8,45.6,14.2,116,9.6,"['Pumpkin_6', 'Carrot_2', 'Sesame Seeds_8']"
+Herbal Tea_6,fruit,['LateWinter'],3,3,3,302,0.5,7.1,57.7,16.0,211,1.5,[]
+Green Tea_6,legume,['Summer'],1,1,0,327,1.4,18.9,32.1,19.7,40,1.0,['Herbal Tea_4']
+Spices Mix_6,dairy,['Spring'],1,2,1,295,0.5,8.7,64.9,18.0,67,8.2,"['Mango_1', 'Chapati_7']"
+Honey_6,beverage,"['EarlyWinter', 'Monsoon']",3,2,0,151,7.2,13.1,51.8,13.1,73,1.5,"['Sesame Seeds_3', 'Orange_4', 'Cucumber_9']"
+Jaggery_6,beverage,"['Monsoon', 'Autumn']",3,3,1,182,1.1,5.6,52.9,10.5,149,4.3,['Banana_5']
+Peanuts_6,fruit,"['Summer', 'Autumn']",2,2,1,150,20.9,12.2,40.9,19.1,125,5.8,[]
+Almonds_6,grain,['Spring'],1,0,1,219,9.8,8.2,65.5,4.2,455,7.7,"['Lentils_10', 'Green Tea_2']"
+Cashews_6,dairy,"['Monsoon', 'LateWinter']",2,1,1,388,7.6,14.1,66.3,16.8,409,6.3,['Green Tea_5']
+Walnuts_6,fat,['Summer'],1,2,2,216,6.9,6.0,54.9,18.4,283,4.6,"['Herbal Tea_5', 'Bottle Gourd_9', 'Coconut_7']"
+Sesame Seeds_6,dairy,"['Autumn', 'EarlyWinter']",2,3,0,400,2.0,18.2,61.3,7.0,490,2.6,"['Chana Dal_4', 'Walnuts_3', 'Tomato_4']"
+Chia Seeds_6,spice,"['Summer', 'Winter', 'Autumn']",0,1,3,140,18.9,17.5,69.9,7.3,165,3.7,"['Guava_9', 'Spinach_7']"
+Rice_7,spice,"['LateWinter', 'Autumn']",3,1,2,392,4.5,9.2,45.0,6.9,336,0.5,"['Moong Dal_3', 'Chana Dal_9', 'Almonds_9']"
+Wheat_7,legume,['LateWinter'],0,3,2,291,24.3,7.7,65.7,8.7,315,2.6,[]
+Roti_7,fruit,['Spring'],1,0,2,159,6.7,4.3,37.7,7.2,272,4.0,"['Cucumber_5', 'Cauliflower_5', 'Upma_5']"
+Chapati_7,fat,['Monsoon'],3,0,2,400,21.4,9.1,53.2,0.9,94,1.4,['Jaggery_9']
+Kitchari_7,fat,['Summer'],2,1,2,319,24.2,10.2,39.5,4.9,376,5.8,"['Almonds_10', 'Broccoli_6', 'Herbal Tea_4']"
+Moong Dal_7,grain,"['EarlyWinter', 'Spring']",1,3,1,83,2.3,9.8,14.0,7.9,154,9.7,"['Carrot_10', 'Cauliflower_1', 'Mango_6']"
+Chana Dal_7,legume,"['Spring', 'Autumn', 'EarlyWinter']",0,1,2,361,5.4,18.9,51.5,16.0,245,6.4,['Peanuts_8']
+Lentils_7,spice,"['Summer', 'EarlyWinter']",3,0,0,107,7.5,8.0,58.3,14.4,127,7.7,['Dosa_9']
+Oats_7,fruit,"['Summer', 'EarlyWinter', 'Monsoon']",1,0,2,112,14.2,11.4,40.9,1.1,208,9.3,[]
+Idli_7,vegetable,"['Summer', 'Winter']",2,2,2,187,18.5,11.5,12.9,2.8,70,7.8,['Green Tea_7']
+Dosa_7,legume,"['Spring', 'Autumn', 'Monsoon']",0,2,1,187,15.7,8.7,54.0,4.9,310,5.5,['Banana_2']
+Upma_7,fruit,"['Autumn', 'Summer', 'EarlyWinter']",1,0,2,188,13.5,6.2,64.3,16.9,9,9.7,"['Oats_9', 'Pineapple_1']"
+Vegetable Sabzi_7,vegetable,['Monsoon'],1,0,0,274,14.6,14.1,55.2,7.9,3,8.0,"['Bottle Gourd_5', 'Almonds_7']"
+Paneer_7,fat,['Autumn'],1,3,3,117,7.0,5.7,32.5,18.1,9,9.3,"['Oats_4', 'Spinach_6']"
+Milk_7,fruit,"['Summer', 'Spring', 'Autumn']",1,2,2,97,24.3,4.1,24.1,6.5,230,9.8,[]
+Curd_7,grain,"['Winter', 'LateWinter']",1,2,3,161,9.1,19.7,40.4,17.4,241,1.8,[]
+Ghee_7,beverage,"['Winter', 'Monsoon', 'LateWinter']",3,0,0,171,11.9,9.7,47.0,16.7,269,7.4,[]
+Butter_7,legume,"['Summer', 'LateWinter']",2,3,2,179,18.3,16.1,45.5,2.7,355,6.1,[]
+Coconut_7,fruit,['Winter'],3,2,2,323,5.5,5.1,26.2,0.1,316,3.1,"['Oats_3', 'Almonds_9', 'Pumpkin_3']"
+Spinach_7,fat,['Spring'],3,0,3,388,10.5,2.2,24.1,6.4,357,7.9,"['Cucumber_10', 'Chapati_8']"
+Carrot_7,fruit,['LateWinter'],3,0,0,313,18.2,6.2,42.4,3.6,341,9.1,"['Green Tea_7', 'Orange_8']"
+Beetroot_7,grain,['Monsoon'],2,2,0,168,23.4,12.7,68.7,13.2,450,3.0,"['Guava_2', 'Wheat_7', 'Lentils_8']"
+Tomato_7,dairy,['Monsoon'],1,1,3,79,10.0,14.3,53.6,18.7,261,2.8,[]
+Cucumber_7,beverage,"['LateWinter', 'Autumn']",3,3,3,283,11.5,6.3,32.2,2.9,373,7.4,['Idli_8']
+Bottle Gourd_7,dairy,"['Summer', 'EarlyWinter']",1,2,2,246,4.1,1.8,47.7,13.8,57,9.7,[]
+Pumpkin_7,vegetable,['Spring'],1,1,3,283,15.7,0.8,67.3,7.4,477,9.7,"['Tomato_8', 'Cucumber_10']"
+Cauliflower_7,spice,['Summer'],2,1,2,67,10.4,14.5,21.5,14.0,267,8.8,['Lentils_8']
+Broccoli_7,fat,"['LateWinter', 'Summer', 'Winter']",3,1,3,363,0.8,11.0,26.6,16.4,155,4.0,"['Kitchari_8', 'Chana Dal_10']"
+Apple_7,vegetable,['Spring'],0,1,2,68,0.9,18.4,33.5,8.0,301,9.4,"['Mango_3', 'Upma_8', 'Spices Mix_2']"
+Banana_7,fruit,['Winter'],0,3,0,184,1.6,13.1,54.6,18.9,294,2.0,"['Oats_3', 'Apple_2', 'Guava_2']"
+Mango_7,dairy,"['Summer', 'Autumn']",0,3,1,365,22.9,11.1,66.5,8.5,226,9.2,['Wheat_5']
+Guava_7,legume,"['Autumn', 'Spring', 'Monsoon']",2,2,1,378,4.4,12.0,62.6,18.1,451,2.0,"['Idli_5', 'Idli_6']"
+Papaya_7,beverage,"['Autumn', 'Summer']",0,3,1,88,20.7,5.4,63.2,18.1,178,6.2,"['Walnuts_3', 'Cucumber_7', 'Jaggery_6']"
+Pineapple_7,dairy,"['Spring', 'LateWinter', 'Monsoon']",0,3,2,340,18.4,11.6,45.5,14.2,389,4.6,['Papaya_3']
+Orange_7,vegetable,['EarlyWinter'],0,3,1,54,9.4,5.1,70.0,9.3,74,0.1,[]
+Lemon_7,fruit,"['Autumn', 'LateWinter', 'Monsoon']",0,2,1,89,22.1,13.0,42.6,2.0,426,8.9,"['Apple_4', 'Wheat_4']"
+Herbal Tea_7,dairy,"['EarlyWinter', 'Monsoon', 'Winter']",3,3,2,242,13.3,19.2,39.2,4.0,489,8.0,['Lentils_8']
+Green Tea_7,dairy,"['Summer', 'Autumn', 'Winter']",3,3,1,332,16.1,0.6,20.2,19.0,147,4.6,[]
+Spices Mix_7,legume,"['LateWinter', 'EarlyWinter']",1,0,1,347,5.6,15.4,43.8,18.5,395,6.6,"['Cauliflower_5', 'Tomato_7']"
+Honey_7,spice,"['Summer', 'Spring']",1,1,2,108,0.5,18.6,23.4,3.8,271,1.1,[]
+Jaggery_7,spice,['Monsoon'],3,3,2,374,19.4,9.0,62.0,12.2,191,6.0,"['Paneer_9', 'Ghee_6', 'Wheat_2']"
+Peanuts_7,fruit,"['LateWinter', 'EarlyWinter']",0,3,1,225,13.0,13.4,58.2,3.0,63,8.5,"['Ghee_8', 'Guava_1', 'Wheat_5']"
+Almonds_7,vegetable,['EarlyWinter'],3,1,0,262,3.5,5.9,66.7,7.2,42,1.8,['Pineapple_3']
+Cashews_7,beverage,"['Winter', 'Autumn']",1,0,2,398,4.6,17.1,20.6,17.1,463,4.8,['Kitchari_4']
+Walnuts_7,spice,['Spring'],0,3,2,168,21.2,4.2,27.2,12.2,217,8.9,['Spinach_8']
+Sesame Seeds_7,legume,['Winter'],1,0,3,348,0.9,13.4,67.0,1.7,297,9.3,['Beetroot_7']
+Chia Seeds_7,grain,['Monsoon'],3,1,0,171,0.8,16.6,57.7,14.0,67,3.0,"['Lentils_5', 'Butter_5', 'Chia Seeds_6']"
+Rice_8,grain,['Spring'],1,1,2,194,8.4,11.9,58.7,3.2,480,1.5,"['Almonds_1', 'Apple_9', 'Walnuts_8']"
+Wheat_8,vegetable,"['Autumn', 'Spring', 'LateWinter']",3,1,1,136,9.7,6.6,22.8,6.0,359,5.8,"['Mango_2', 'Cashews_9']"
+Roti_8,dairy,['LateWinter'],3,1,2,287,2.4,6.8,45.8,1.4,132,4.6,"['Beetroot_4', 'Oats_8']"
+Chapati_8,spice,"['Summer', 'Monsoon']",0,3,2,126,2.2,2.7,63.9,4.8,251,2.3,"['Lentils_9', 'Coconut_10']"
+Kitchari_8,legume,['Monsoon'],0,1,2,272,22.5,12.3,56.5,0.6,369,8.1,['Cashews_7']
+Moong Dal_8,fat,"['Autumn', 'Monsoon']",3,2,3,92,5.7,1.6,25.0,4.5,196,6.1,['Chapati_5']
+Chana Dal_8,fruit,['EarlyWinter'],2,2,1,70,9.2,8.5,27.4,7.2,333,7.6,[]
+Lentils_8,fruit,['Spring'],1,0,2,270,23.3,14.2,66.0,8.6,350,9.8,[]
+Oats_8,dairy,"['Autumn', 'Spring']",2,1,3,392,8.5,9.3,24.9,13.7,418,7.6,"['Curd_8', 'Oats_10', 'Butter_7']"
+Idli_8,beverage,"['Winter', 'EarlyWinter', 'Summer']",2,0,0,297,5.3,4.5,32.4,10.3,192,6.9,"['Walnuts_7', 'Spinach_2']"
+Dosa_8,grain,"['Monsoon', 'EarlyWinter', 'Winter']",1,0,3,160,23.7,16.2,38.8,18.6,482,5.6,['Cucumber_5']
+Upma_8,legume,"['Summer', 'LateWinter']",0,2,0,113,23.5,8.7,24.7,7.2,422,6.5,[]
+Vegetable Sabzi_8,fruit,"['Summer', 'Autumn']",1,1,0,145,24.5,1.5,26.8,5.5,100,6.4,"['Herbal Tea_10', 'Chapati_1', 'Cauliflower_4']"
+Paneer_8,beverage,"['Summer', 'LateWinter']",3,3,3,267,2.3,11.2,63.6,9.0,165,8.7,"['Coconut_3', 'Broccoli_4', 'Vegetable Sabzi_3']"
+Milk_8,beverage,['Autumn'],0,3,2,384,5.2,5.1,41.2,19.4,83,9.3,['Lemon_2']
+Curd_8,dairy,"['Summer', 'Winter', 'EarlyWinter']",3,1,0,301,15.4,8.6,39.3,18.1,283,2.0,"['Bottle Gourd_9', 'Papaya_8']"
+Ghee_8,fat,['Summer'],3,0,1,53,17.2,7.6,49.9,12.8,428,6.0,[]
+Butter_8,vegetable,"['Summer', 'LateWinter', 'Monsoon']",2,2,1,205,22.9,9.5,50.3,16.0,23,2.8,"['Sesame Seeds_6', 'Banana_2']"
+Coconut_8,dairy,"['EarlyWinter', 'Monsoon']",0,3,2,186,9.7,7.2,55.3,15.8,85,2.3,"['Dosa_2', 'Cauliflower_9']"
+Spinach_8,dairy,"['Autumn', 'Winter', 'Summer']",0,2,0,225,24.3,19.4,64.3,7.7,324,8.8,['Cucumber_9']
+Carrot_8,grain,"['Winter', 'LateWinter']",3,0,3,350,9.6,5.6,25.0,16.2,5,6.6,[]
+Beetroot_8,spice,"['Spring', 'LateWinter']",3,1,0,317,13.0,4.3,34.8,19.6,101,6.6,['Coconut_8']
+Tomato_8,fruit,"['Summer', 'EarlyWinter', 'Autumn']",1,3,1,61,19.6,7.9,37.6,10.2,301,5.4,"['Cucumber_8', 'Green Tea_7']"
+Cucumber_8,beverage,"['Autumn', 'Monsoon', 'LateWinter']",2,0,3,174,16.6,13.6,16.1,6.1,338,3.6,['Cashews_2']
+Bottle Gourd_8,vegetable,['Monsoon'],0,3,2,392,18.3,10.6,37.0,15.0,352,6.8,[]
+Pumpkin_8,dairy,['Winter'],3,3,0,154,9.4,13.7,34.7,11.5,266,0.7,"['Walnuts_1', 'Curd_1']"
+Cauliflower_8,grain,['Winter'],2,0,0,282,6.1,11.5,19.1,7.3,25,5.5,[]
+Broccoli_8,fat,"['Autumn', 'EarlyWinter', 'Winter']",1,3,1,279,22.7,14.8,14.0,17.3,355,2.8,[]
+Apple_8,fruit,"['Spring', 'Winter']",2,0,2,85,21.7,11.6,42.4,14.1,459,2.5,"['Jaggery_7', 'Peanuts_1', 'Lentils_2']"
+Banana_8,beverage,"['Summer', 'LateWinter']",1,3,1,228,22.9,0.8,16.1,0.6,251,3.1,"['Walnuts_2', 'Apple_8']"
+Mango_8,spice,"['Monsoon', 'Autumn']",1,3,3,295,12.5,0.2,14.0,9.9,484,4.4,[]
+Guava_8,vegetable,"['LateWinter', 'Summer', 'EarlyWinter']",0,2,1,290,9.4,3.9,17.8,1.4,49,2.3,[]
+Papaya_8,beverage,"['Autumn', 'Spring']",0,2,3,172,1.1,19.0,27.6,14.0,117,9.7,"['Lemon_9', 'Chia Seeds_10']"
+Pineapple_8,dairy,['LateWinter'],2,2,3,240,17.5,6.9,5.5,16.6,423,2.1,['Beetroot_2']
+Orange_8,beverage,['Monsoon'],0,3,2,272,1.0,6.9,38.7,2.0,310,9.4,[]
+Lemon_8,legume,"['Monsoon', 'LateWinter']",2,0,2,261,7.8,13.1,11.2,5.3,76,3.5,['Butter_3']
+Herbal Tea_8,dairy,"['Summer', 'Autumn']",2,1,1,231,21.3,9.5,18.4,14.5,408,6.8,[]
+Green Tea_8,grain,"['Monsoon', 'EarlyWinter']",0,3,2,297,13.4,9.8,23.8,13.0,448,5.3,"['Pumpkin_8', 'Chana Dal_1']"
+Spices Mix_8,fat,"['Spring', 'Autumn', 'EarlyWinter']",1,1,2,259,21.6,14.5,10.8,2.8,217,6.1,[]
+Honey_8,fat,"['LateWinter', 'EarlyWinter']",2,1,0,368,8.5,13.1,28.7,3.5,357,5.5,[]
+Jaggery_8,grain,"['Spring', 'Winter']",2,2,3,86,20.6,18.4,67.1,16.6,475,3.4,[]
+Peanuts_8,beverage,"['Summer', 'Autumn', 'EarlyWinter']",3,3,3,169,8.3,13.4,69.9,5.1,195,6.6,"['Chia Seeds_10', 'Almonds_5', 'Jaggery_8']"
+Almonds_8,vegetable,['EarlyWinter'],2,0,2,326,11.9,9.1,17.4,6.5,36,1.3,['Vegetable Sabzi_8']
+Cashews_8,fruit,"['Autumn', 'EarlyWinter', 'Winter']",0,1,0,136,5.7,1.3,11.6,2.6,26,0.8,"['Beetroot_5', 'Walnuts_2']"
+Walnuts_8,legume,['Monsoon'],1,0,2,325,1.7,13.3,16.8,10.2,370,6.4,[]
+Sesame Seeds_8,legume,"['Monsoon', 'Winter', 'EarlyWinter']",3,1,3,203,13.0,15.9,46.6,14.7,178,2.5,['Tomato_9']
+Chia Seeds_8,grain,['Autumn'],1,3,2,219,1.9,11.1,26.6,12.7,37,0.5,"['Papaya_8', 'Carrot_7', 'Lentils_10']"
+Rice_9,legume,['LateWinter'],2,2,1,87,1.7,17.7,37.1,10.3,222,9.9,[]
+Wheat_9,beverage,"['Winter', 'Monsoon', 'Summer']",1,2,0,108,9.4,9.2,61.4,5.3,111,6.8,"['Chana Dal_6', 'Idli_5', 'Spices Mix_6']"
+Roti_9,fat,"['Autumn', 'Summer']",3,1,1,347,17.0,19.9,23.4,11.5,58,5.8,"['Guava_2', 'Upma_10']"
+Chapati_9,grain,['LateWinter'],3,1,3,223,21.1,3.6,66.5,18.7,97,0.0,['Pumpkin_1']
+Kitchari_9,fruit,['Monsoon'],1,3,3,132,3.6,2.7,18.7,16.0,116,1.4,['Vegetable Sabzi_9']
+Moong Dal_9,legume,"['Monsoon', 'Autumn', 'Summer']",3,3,3,307,23.0,16.6,37.9,4.1,333,9.7,"['Ghee_8', 'Paneer_5']"
+Chana Dal_9,beverage,['EarlyWinter'],3,0,0,250,10.2,2.4,12.6,0.8,180,6.3,['Milk_5']
+Lentils_9,spice,"['Autumn', 'Winter']",3,0,0,235,17.3,14.3,65.8,19.7,98,6.4,"['Vegetable Sabzi_5', 'Green Tea_8']"
+Oats_9,vegetable,['Summer'],0,3,1,321,7.0,16.2,33.2,14.9,310,6.9,"['Ghee_6', 'Spinach_3', 'Walnuts_7']"
+Idli_9,fruit,"['Autumn', 'Summer', 'Winter']",1,0,1,246,21.4,15.6,19.0,0.6,41,0.2,['Milk_3']
+Dosa_9,dairy,['Spring'],3,3,2,235,21.2,18.8,43.0,18.5,273,7.8,[]
+Upma_9,fruit,"['Autumn', 'EarlyWinter']",3,1,0,292,10.6,3.1,26.3,6.0,305,8.6,"['Green Tea_9', 'Banana_8']"
+Vegetable Sabzi_9,dairy,['Winter'],0,2,1,280,7.0,3.9,41.6,18.7,146,8.1,"['Banana_1', 'Cucumber_9', 'Cashews_3']"
+Paneer_9,grain,"['Autumn', 'LateWinter', 'Spring']",2,1,3,242,15.9,13.4,41.6,15.6,381,2.9,"['Wheat_6', 'Walnuts_1', 'Roti_4']"
+Milk_9,fat,"['LateWinter', 'Spring']",2,1,3,65,1.8,16.9,46.0,6.0,343,1.8,"['Sesame Seeds_10', 'Papaya_4', 'Walnuts_2']"
+Curd_9,grain,"['EarlyWinter', 'Autumn']",1,2,3,219,19.8,17.6,16.2,4.8,74,1.9,[]
+Ghee_9,legume,['Autumn'],3,3,2,164,4.3,11.9,49.6,6.4,291,7.7,[]
+Butter_9,fat,['EarlyWinter'],0,0,3,89,9.1,15.5,18.2,18.5,342,0.8,['Roti_6']
+Coconut_9,fat,['Spring'],1,2,3,363,13.7,15.3,23.5,19.9,64,2.2,"['Peanuts_10', 'Guava_4']"
+Spinach_9,fruit,['Autumn'],1,0,1,246,4.3,16.5,23.7,13.0,214,7.9,[]
+Carrot_9,vegetable,"['EarlyWinter', 'Spring', 'Autumn']",2,1,0,345,5.6,0.8,53.4,11.8,437,0.8,"['Kitchari_3', 'Apple_2', 'Jaggery_3']"
+Beetroot_9,dairy,['EarlyWinter'],2,2,0,199,4.6,13.5,58.2,14.7,157,0.7,['Sesame Seeds_4']
+Tomato_9,grain,['EarlyWinter'],3,0,1,390,8.3,14.4,19.3,1.3,47,6.2,"['Herbal Tea_3', 'Spinach_4', 'Wheat_6']"
+Cucumber_9,legume,"['Monsoon', 'Summer', 'Spring']",0,3,1,55,16.8,15.3,56.8,14.6,125,0.1,"['Pineapple_10', 'Curd_2', 'Apple_6']"
+Bottle Gourd_9,legume,"['Monsoon', 'Summer']",2,3,2,70,1.8,10.4,65.9,11.8,240,5.6,"['Rice_10', 'Tomato_4']"
+Pumpkin_9,beverage,"['Autumn', 'EarlyWinter']",3,2,0,272,11.5,16.8,32.6,18.8,428,6.8,"['Rice_8', 'Beetroot_4']"
+Cauliflower_9,dairy,"['LateWinter', 'Monsoon', 'Spring']",0,0,0,256,17.6,10.4,44.5,18.3,311,8.4,"['Pineapple_6', 'Idli_1', 'Roti_10']"
+Broccoli_9,fat,"['EarlyWinter', 'Winter']",1,3,3,283,20.7,2.5,53.7,12.5,439,9.7,"['Chia Seeds_4', 'Tomato_5', 'Herbal Tea_6']"
+Apple_9,dairy,"['Winter', 'Spring']",3,0,0,171,12.3,19.2,20.5,2.0,428,7.9,[]
+Banana_9,fat,['Summer'],1,1,2,150,22.2,19.1,19.6,17.7,364,3.3,[]
+Mango_9,spice,['LateWinter'],0,1,3,133,7.9,14.0,28.7,12.7,85,5.7,[]
+Guava_9,fruit,"['Spring', 'EarlyWinter', 'Summer']",0,0,0,399,18.7,8.3,30.8,0.8,46,7.3,['Peanuts_2']
+Papaya_9,grain,['Summer'],3,2,1,210,5.5,14.6,12.0,16.0,453,1.4,"['Wheat_6', 'Milk_3', 'Paneer_5']"
+Pineapple_9,fat,['LateWinter'],1,3,0,208,14.3,19.9,69.2,2.0,475,9.7,"['Kitchari_7', 'Cashews_2', 'Moong Dal_1']"
+Orange_9,vegetable,"['Monsoon', 'Autumn']",0,3,2,313,9.6,9.0,36.5,8.4,446,5.5,[]
+Lemon_9,vegetable,['EarlyWinter'],3,1,1,217,8.5,9.6,62.7,17.5,7,8.6,"['Pumpkin_4', 'Almonds_10']"
+Herbal Tea_9,fruit,"['EarlyWinter', 'Monsoon', 'LateWinter']",1,2,2,175,6.9,5.4,57.0,7.7,470,5.0,"['Pumpkin_1', 'Chia Seeds_8']"
+Green Tea_9,dairy,"['EarlyWinter', 'Autumn', 'LateWinter']",0,2,2,74,13.9,18.4,47.3,13.6,167,5.1,[]
+Spices Mix_9,legume,['Summer'],0,3,3,54,24.4,3.6,59.6,6.4,201,5.9,['Pumpkin_4']
+Honey_9,beverage,"['Summer', 'Autumn']",2,2,1,370,3.1,19.5,43.6,5.9,4,2.4,['Rice_3']
+Jaggery_9,fruit,['Monsoon'],2,1,1,337,1.8,4.2,66.1,11.1,4,0.2,"['Mango_6', 'Lemon_4']"
+Peanuts_9,legume,"['Spring', 'Autumn']",1,1,3,355,6.7,5.6,53.0,5.3,432,6.0,['Dosa_8']
+Almonds_9,grain,['EarlyWinter'],2,1,0,71,7.4,3.2,46.5,15.4,274,5.4,"['Spinach_9', 'Dosa_5', 'Rice_4']"
+Cashews_9,dairy,"['Monsoon', 'Winter']",1,3,2,223,6.6,1.8,54.3,5.9,325,1.2,"['Almonds_2', 'Peanuts_8', 'Beetroot_2']"
+Walnuts_9,legume,"['Monsoon', 'EarlyWinter', 'Winter']",2,1,3,198,12.7,9.2,64.3,10.9,288,7.7,"['Cauliflower_4', 'Moong Dal_4']"
+Sesame Seeds_9,legume,"['LateWinter', 'Autumn', 'EarlyWinter']",3,2,3,86,4.3,7.2,19.7,12.4,494,3.3,"['Milk_1', 'Pineapple_9', 'Spices Mix_4']"
+Chia Seeds_9,fat,"['EarlyWinter', 'Spring', 'Autumn']",3,1,1,382,22.9,8.2,34.7,16.6,284,3.7,"['Lemon_1', 'Pineapple_7', 'Mango_6']"
+Rice_10,fat,['Winter'],0,2,0,206,18.4,4.7,16.3,17.1,430,3.8,['Beetroot_1']
+Wheat_10,vegetable,"['EarlyWinter', 'Monsoon', 'Winter']",3,0,3,299,6.1,7.4,58.3,19.4,225,8.9,['Vegetable Sabzi_9']
+Roti_10,dairy,"['Autumn', 'Summer', 'Monsoon']",2,2,0,59,16.2,4.1,13.0,2.3,290,3.7,[]
+Chapati_10,beverage,"['Spring', 'Summer', 'EarlyWinter']",1,3,2,281,18.4,13.9,25.4,1.5,46,9.0,"['Rice_5', 'Orange_3']"
+Kitchari_10,beverage,['Monsoon'],1,3,3,285,19.6,7.6,5.2,5.1,382,8.0,['Cucumber_1']
+Moong Dal_10,dairy,"['Autumn', 'LateWinter', 'Winter']",1,1,2,237,15.2,7.6,50.6,12.1,240,9.2,"['Sesame Seeds_10', 'Sesame Seeds_7']"
+Chana Dal_10,fat,"['Summer', 'Spring']",1,2,0,188,3.3,16.1,33.4,2.8,175,2.4,"['Cashews_1', 'Ghee_1']"
+Lentils_10,grain,"['Monsoon', 'Summer', 'EarlyWinter']",1,1,3,101,18.9,4.0,22.8,2.5,135,0.6,[]
+Oats_10,grain,"['Autumn', 'Spring', 'Summer']",3,3,1,291,16.1,19.7,60.9,8.7,243,5.6,[]
+Idli_10,dairy,['LateWinter'],2,3,3,340,5.1,17.9,56.0,17.7,487,2.1,"['Lemon_8', 'Apple_3', 'Moong Dal_4']"
+Dosa_10,spice,['EarlyWinter'],1,3,0,79,17.9,18.2,6.3,6.1,370,2.9,['Herbal Tea_1']
+Upma_10,fruit,"['Winter', 'Spring']",1,3,3,265,1.3,13.1,56.7,3.3,431,1.9,"['Coconut_10', 'Cauliflower_8']"
+Vegetable Sabzi_10,legume,"['Winter', 'Summer', 'Monsoon']",3,1,1,282,17.2,6.5,24.1,8.1,18,6.0,['Green Tea_6']
+Paneer_10,grain,"['Monsoon', 'Winter', 'EarlyWinter']",1,3,1,122,12.7,7.7,17.0,0.4,209,5.8,"['Orange_6', 'Tomato_4', 'Apple_5']"
+Milk_10,grain,['Winter'],1,1,1,348,4.5,2.6,31.9,18.2,4,1.3,"['Peanuts_3', 'Idli_8']"
+Curd_10,beverage,['LateWinter'],1,1,2,278,5.8,4.1,54.6,14.7,437,6.3,['Milk_10']
+Ghee_10,spice,"['Autumn', 'Spring']",3,2,1,70,12.1,16.9,62.0,3.4,490,4.4,"['Paneer_1', 'Bottle Gourd_5']"
+Butter_10,grain,['Autumn'],3,1,1,311,17.9,4.6,29.0,8.1,77,5.9,['Herbal Tea_7']
+Coconut_10,beverage,['Summer'],3,2,1,332,8.7,15.5,47.7,5.0,163,6.5,[]
+Spinach_10,beverage,"['LateWinter', 'Autumn']",2,2,0,54,16.3,13.9,30.4,14.3,488,6.1,[]
+Carrot_10,legume,"['Winter', 'EarlyWinter', 'Summer']",3,3,3,301,8.5,6.1,21.1,15.6,220,9.8,[]
+Beetroot_10,vegetable,['EarlyWinter'],0,3,3,255,20.5,8.3,46.9,13.1,437,4.2,['Vegetable Sabzi_9']
+Tomato_10,fat,"['Summer', 'Spring', 'Autumn']",0,0,1,231,13.4,6.3,20.8,16.5,348,6.4,[]
+Cucumber_10,vegetable,"['Monsoon', 'Winter', 'Autumn']",0,0,1,232,20.8,15.9,5.8,5.8,229,9.4,['Honey_8']
+Bottle Gourd_10,fruit,"['EarlyWinter', 'Monsoon']",3,3,0,62,3.0,9.5,27.9,18.4,374,1.6,['Green Tea_1']
+Pumpkin_10,fat,['EarlyWinter'],1,2,0,319,6.1,14.7,54.4,7.5,79,2.3,[]
+Cauliflower_10,fat,['Monsoon'],0,1,1,132,10.9,9.0,27.0,1.4,168,3.4,['Chapati_6']
+Broccoli_10,fruit,"['Spring', 'EarlyWinter', 'LateWinter']",1,2,1,297,13.9,6.2,15.0,14.8,77,1.4,"['Peanuts_3', 'Jaggery_6', 'Apple_2']"
+Apple_10,fruit,"['Spring', 'Winter', 'Autumn']",0,3,3,220,24.3,9.4,20.1,0.1,489,9.9,['Rice_6']
+Banana_10,fruit,"['Summer', 'Autumn', 'Winter']",3,1,2,352,3.6,8.7,55.6,10.6,132,7.5,[]
+Mango_10,beverage,"['Spring', 'LateWinter']",0,2,1,388,13.5,0.4,67.1,8.0,206,3.1,"['Moong Dal_9', 'Tomato_4']"
+Guava_10,fat,"['Spring', 'Summer', 'LateWinter']",2,0,3,140,14.0,5.4,67.3,12.2,367,4.6,['Bottle Gourd_8']
+Papaya_10,vegetable,['Spring'],3,1,2,148,0.6,9.4,17.1,10.9,95,0.7,['Vegetable Sabzi_4']
+Pineapple_10,beverage,"['LateWinter', 'Spring']",3,0,2,152,14.8,7.2,40.6,0.1,463,4.1,"['Almonds_2', 'Orange_10']"
+Orange_10,spice,"['LateWinter', 'Winter', 'Monsoon']",3,2,2,194,24.9,2.4,68.3,1.9,420,8.3,"['Honey_10', 'Beetroot_7']"
+Lemon_10,vegetable,"['LateWinter', 'Autumn', 'EarlyWinter']",1,1,3,316,6.3,13.9,23.9,12.5,455,9.9,[]
+Herbal Tea_10,legume,"['EarlyWinter', 'Summer']",2,3,1,167,17.1,13.3,49.4,11.6,106,9.3,"['Cucumber_4', 'Cashews_9']"
+Green Tea_10,fat,"['Monsoon', 'EarlyWinter', 'Winter']",1,3,0,170,23.8,17.2,13.1,0.5,268,2.2,"['Apple_2', 'Banana_2']"
+Spices Mix_10,dairy,"['Winter', 'Autumn', 'EarlyWinter']",2,1,0,274,16.6,5.6,57.1,10.3,433,2.9,['Walnuts_7']
+Honey_10,beverage,['Autumn'],0,1,0,179,3.2,10.4,66.6,16.2,239,5.4,"['Chapati_8', 'Walnuts_4', 'Wheat_2']"
+Jaggery_10,beverage,['Autumn'],3,1,2,252,5.8,13.3,7.9,4.2,320,3.1,[]
+Peanuts_10,legume,"['Monsoon', 'LateWinter']",3,3,1,127,7.2,3.3,23.4,1.3,58,1.2,"['Vegetable Sabzi_6', 'Lemon_1']"
+Almonds_10,dairy,"['Monsoon', 'LateWinter', 'Autumn']",2,2,0,384,16.8,19.4,33.7,14.2,57,1.1,[]
+Cashews_10,dairy,"['LateWinter', 'EarlyWinter']",3,2,2,189,22.8,7.9,41.6,1.8,243,9.6,"['Walnuts_7', 'Bottle Gourd_1', 'Apple_6']"
+Walnuts_10,beverage,"['Autumn', 'Spring']",2,0,2,264,15.7,3.6,57.9,11.6,404,7.5,"['Lemon_7', 'Butter_2', 'Kitchari_6']"
+Sesame Seeds_10,dairy,"['Monsoon', 'Spring']",2,1,0,100,15.0,15.0,12.3,15.7,473,8.0,"['Oats_2', 'Pineapple_2']"
+Chia Seeds_10,fruit,"['Winter', 'EarlyWinter', 'Summer']",0,0,0,357,13.2,12.1,41.5,17.3,379,9.6,"['Milk_6', 'Papaya_10']"

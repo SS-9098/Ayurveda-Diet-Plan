@@ -263,21 +263,32 @@ if res == cp_model.OPTIMAL or res == cp_model.FEASIBLE:
     for d in DAYS:
         for s_idx, sname in enumerate(SLOTS):
             for f in range(N_F):
-                if solver.Value(x[(f,d,s_idx)]) == 1:
-                    plan[d][sname] = FOODS[f]["name"]
+                if solver.Value(x[(f, d, s_idx)]) == 1:
+                    plan[d][sname] = FOODS[f]
+
     # print plan
     for d in DAYS:
         print(f"\nDay {d+1}:")
         # compute day totals
-        totcal = sum(FOODS[f]["cal"] * solver.Value(x[(f,d,s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
-        totprot = sum(FOODS[f]["prot"] * solver.Value(x[(f,d,s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
-        totfat = sum(FOODS[f]["fat"] * solver.Value(x[(f,d,s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
-        totsugar = sum(FOODS[f]["sugar"] * solver.Value(x[(f,d,s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
+        totcal = sum(FOODS[f]["cal"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
+        totprot = sum(FOODS[f]["prot"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
+        totfat = sum(FOODS[f]["fat"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
+        totsugar = sum(FOODS[f]["sugar"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
         print(f"  Totals — cal: {totcal}, prot: {totprot}g, fat: {totfat}g, sugar: {totsugar}g")
+
         for s in SLOTS:
-            print(f"    {s.capitalize():9}: {plan[d][s]}")
+            food = plan[d][s]
+            if food:
+                print(
+                    f"    {s.capitalize():9}: {food['name']} "
+                    f"(cal {food['cal']}, prot {food['prot']}g, fat {food['fat']}g, sugar {food['sugar']}g, "
+                    f"V:{food['vata_score']}, P:{food['pitta_score']}, K:{food['kapha_score']})"
+                )
+            else:
+                print(f"    {s.capitalize():9}: None")
 else:
     print("No solution found. Status:", res)
+
 
 # ------------------
 # 6) How you can extend / productionize

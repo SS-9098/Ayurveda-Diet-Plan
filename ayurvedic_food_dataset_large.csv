@@ -1,4 +1,4 @@
-name,type,season_tags,Vata,Pitta,Kapha,calories,protein_g,fat_g,carb_g,sugar_g,sodium_mg,satfat_g,incompatible_with
+name,type,season_tags,vata_score,pitta_score,kapha_score,cal,prot,fat,carb,sugar,sodium_mg,satfat_g,incompatible_with
 Rice_1,legume,"['Autumn', 'Monsoon', 'Winter']",1,0,0,292,11.3,13.0,63.0,16.1,156,8.7,['Lemon_4']
 Wheat_1,beverage,['Autumn'],1,3,0,72,3.0,8.1,67.1,11.6,276,9.4,"['Bottle Gourd_1', 'Green Tea_1', 'Chana Dal_3']"
 Roti_1,beverage,"['Summer', 'Winter', 'Spring']",3,3,3,398,20.9,14.6,29.2,10.3,75,7.8,"['Tomato_8', 'Orange_3', 'Beetroot_3']"

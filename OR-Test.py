@@ -277,37 +277,86 @@ solver = cp_model.CpSolver()
 solver.parameters.max_time_in_seconds = 30.0
 solver.parameters.num_search_workers = 8
 
-res = solver.Solve(model)
+class MealEnumerator(cp_model.CpSolverSolutionCallback):
+    def __init__(self, x, foods, slots, days, top_k=3):
+        cp_model.CpSolverSolutionCallback.__init__(self)
+        self._x = x
+        self._foods = foods
+        self._slots = slots
+        self._days = days
+        self._top_k = top_k
+        self.solutions = []
+        self._count = 0
 
-if res == cp_model.OPTIMAL or res == cp_model.FEASIBLE:
-    print("Solution found. Objective:", solver.ObjectiveValue())
+    def on_solution_callback(self):
+        if self._count >= self._top_k:
+            self.StopSearch()
+            return
 
+        plan = {d: {s: [] for s in self._slots} for d in self._days}
+        for d in self._days:
+            for s_idx, sname in enumerate(self._slots):
+                for f, food in enumerate(self._foods):
+                    if self.Value(self._x[(f, d, s_idx)]) == 1:
+                        plan[d][sname].append(food)
+
+        self.solutions.append(plan)
+        self._count += 1
+
+
+
+plans = []
+best_obj = None
+
+for k in range(3):  # top 3 plans
+    res = solver.Solve(model)
+    if res != cp_model.OPTIMAL and res != cp_model.FEASIBLE:
+        break
+
+    obj_val = solver.ObjectiveValue()
+    if best_obj is None:
+        best_obj = obj_val
+
+    print(f"\n=== Meal Plan #{k+1} (Objective {obj_val}) ===")
+
+    # extract plan
+    plan = {d: {s: [] for s in SLOTS} for d in DAYS}
+    chosen_vars = []
+    for d in DAYS:
+        for s_idx, sname in enumerate(SLOTS):
+            for f, food in enumerate(FOODS):
+                if solver.Value(x[(f, d, s_idx)]) == 1:
+                    plan[d][sname].append(food)
+                    chosen_vars.append(x[(f, d, s_idx)])
+
+    plans.append(plan)
+
+    # print plan
     for d in DAYS:
         print(f"\nDay {d+1}:")
-        # compute day totals from chosen foods
-        totcal = sum(FOODS[f]["cal"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
-        totprot = sum(FOODS[f]["prot"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
-        totfat = sum(FOODS[f]["fat"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
-        totsugar = sum(FOODS[f]["sugar"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
+
+        # daily totals
+        totcal = sum(food["cal"] for s in SLOTS for food in plan[d][s])
+        totprot = sum(food["prot"] for s in SLOTS for food in plan[d][s])
+        totfat = sum(food["fat"] for s in SLOTS for food in plan[d][s])
+        totsugar = sum(food["sugar"] for s in SLOTS for food in plan[d][s])
         print(f"  Totals — cal: {totcal}, prot: {totprot}g, fat: {totfat}g, sugar: {totsugar}g")
 
-        # for each slot, rank top-3 candidates
-        for s_idx, sname in enumerate(SLOTS):
-            candidates = [
-                (food, compute_score(food, user_dosha="Vata"))  # change dosha as needed
-                for food in FOODS if sname in food["allowed_slots"]
-            ]
-            ranked = sorted(candidates, key=lambda x: x[1])
-            print(f"    {sname.capitalize():9}:")
-            for rank, (food, score) in enumerate(ranked[:3], 1):
-                print(
-                    f"      {rank}. {food['name']} "
-                    f"(cal {food['cal']}, prot {food['prot']}g, fat {food['fat']}g, sugar {food['sugar']}g, "
-                    f"V:{food['vata_score']}, P:{food['pitta_score']}, K:{food['kapha_score']}) "
-                    f"[score={score:.2f}]"
-                )
-else:
-    print("No solution found. Status:", res)
+        for s in SLOTS:
+            foods_in_slot = plan[d][s]
+            if foods_in_slot:
+                for rank, food in enumerate(foods_in_slot, 1):
+                    print(
+                        f"    {s.capitalize():9} {rank}. {food['name']} "
+                        f"(cal {food['cal']}, prot {food['prot']}g, fat {food['fat']}g, sugar {food['sugar']}g, "
+                        f"V:{food['vata_score']}, P:{food['pitta_score']}, K:{food['kapha_score']})"
+                    )
+            else:
+                print(f"    {s.capitalize():9}: None")
+
+    # exclude this solution → force solver to find a new one
+    model.Add(sum(chosen_vars) <= len(chosen_vars) - 1)
+
 
 
 # ------------------

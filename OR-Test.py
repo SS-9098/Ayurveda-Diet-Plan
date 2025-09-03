@@ -30,17 +30,17 @@ def load_foods(csv_path):
         foods.append({
             "id": i,
             "name": row["name"],
-            "cal": int(row["cal"]),
-            "prot": int(row["prot"]),
-            "fat": int(row["fat"]),
-            "carb": int(row["carb"]),
-            "sugar": int(row["sugar"]),
+            "cal": int(row["cal"]) or 0,
+            "prot": int(row["prot"]) or 0,
+            "fat": int(row["fat"]) or 0,
+            "carb": int(row["carb"]) or 0,
+            "sugar": int(row["sugar"]) or 0,
             "allowed_slots": ["breakfast","lunch","snack","dinner"],
             "incompatible_with": ast.literal_eval(row["incompatible_with"]),
             #"ingredients": row["ingredients"],
-            "vata_score": float(row["vata_score"]),
-            "pitta_score": float(row["pitta_score"]),
-            "kapha_score": float(row["kapha_score"]),
+            "vata_score": float(row["vata_score"]) or 0,
+            "pitta_score": float(row["pitta_score"]) or 0,
+            "kapha_score": float(row["kapha_score"]) or 0,
         })
     for food in foods:
         new_incompat = []
@@ -226,6 +226,29 @@ W_FAT = 6
 W_SUGAR = 6
 W_DOSHA = 10   # reward for dosha-balancing food (we'll subtract from cost)
 
+
+def compute_score(food, user_dosha, target_cal=2000, target_prot=60, target_fat=70, target_sugar=30, W_DOSHA=10):
+    """
+    A simple scoring function: lower = better.
+    You can customize targets / weights as needed.
+    """
+    # base nutrition deviation
+    score = abs(food["cal"] - target_cal/4) \
+          + abs(food["prot"] - target_prot/4) \
+          + abs(food["fat"] - target_fat/4) \
+          + abs(food["sugar"] - target_sugar/4)
+
+    # dosha adjustment
+    if user_dosha == "Vata":
+        score -= W_DOSHA * food["vata_score"]
+    elif user_dosha == "Pitta":
+        score -= W_DOSHA * food["pitta_score"]
+    elif user_dosha == "Kapha":
+        score -= W_DOSHA * food["kapha_score"]
+
+    return score
+
+
 # Build objective expression
 obj_terms = []
 for d in DAYS:
@@ -258,34 +281,31 @@ res = solver.Solve(model)
 
 if res == cp_model.OPTIMAL or res == cp_model.FEASIBLE:
     print("Solution found. Objective:", solver.ObjectiveValue())
-    # Construct weekly plan
-    plan = {d: {s: None for s in SLOTS} for d in DAYS}
-    for d in DAYS:
-        for s_idx, sname in enumerate(SLOTS):
-            for f in range(N_F):
-                if solver.Value(x[(f, d, s_idx)]) == 1:
-                    plan[d][sname] = FOODS[f]
 
-    # print plan
     for d in DAYS:
         print(f"\nDay {d+1}:")
-        # compute day totals
+        # compute day totals from chosen foods
         totcal = sum(FOODS[f]["cal"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
         totprot = sum(FOODS[f]["prot"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
         totfat = sum(FOODS[f]["fat"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
         totsugar = sum(FOODS[f]["sugar"] * solver.Value(x[(f, d, s_idx)]) for f in range(N_F) for s_idx in range(len(SLOTS)))
         print(f"  Totals — cal: {totcal}, prot: {totprot}g, fat: {totfat}g, sugar: {totsugar}g")
 
-        for s in SLOTS:
-            food = plan[d][s]
-            if food:
+        # for each slot, rank top-3 candidates
+        for s_idx, sname in enumerate(SLOTS):
+            candidates = [
+                (food, compute_score(food, user_dosha="Vata"))  # change dosha as needed
+                for food in FOODS if sname in food["allowed_slots"]
+            ]
+            ranked = sorted(candidates, key=lambda x: x[1])
+            print(f"    {sname.capitalize():9}:")
+            for rank, (food, score) in enumerate(ranked[:3], 1):
                 print(
-                    f"    {s.capitalize():9}: {food['name']} "
+                    f"      {rank}. {food['name']} "
                     f"(cal {food['cal']}, prot {food['prot']}g, fat {food['fat']}g, sugar {food['sugar']}g, "
-                    f"V:{food['vata_score']}, P:{food['pitta_score']}, K:{food['kapha_score']})"
+                    f"V:{food['vata_score']}, P:{food['pitta_score']}, K:{food['kapha_score']}) "
+                    f"[score={score:.2f}]"
                 )
-            else:
-                print(f"    {s.capitalize():9}: None")
 else:
     print("No solution found. Status:", res)
 

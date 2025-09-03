@@ -304,38 +304,42 @@ class MealEnumerator(cp_model.CpSolverSolutionCallback):
         self._count += 1
 
 
+# Number of alternatives per slot
+# After solving your model once
+res = solver.Solve(model)
 
-plans = []
-best_obj = None
+if res == cp_model.OPTIMAL or res == cp_model.FEASIBLE:
+    print("Solution found. Objective:", solver.ObjectiveValue())
 
-for k in range(3):  # top 3 plans
-    res = solver.Solve(model)
-    if res != cp_model.OPTIMAL and res != cp_model.FEASIBLE:
-        break
-
-    obj_val = solver.ObjectiveValue()
-    if best_obj is None:
-        best_obj = obj_val
-
-    print(f"\n=== Meal Plan #{k+1} (Objective {obj_val}) ===")
-
-    # extract plan
+    # Construct base plan
     plan = {d: {s: [] for s in SLOTS} for d in DAYS}
-    chosen_vars = []
     for d in DAYS:
         for s_idx, sname in enumerate(SLOTS):
             for f, food in enumerate(FOODS):
                 if solver.Value(x[(f, d, s_idx)]) == 1:
                     plan[d][sname].append(food)
-                    chosen_vars.append(x[(f, d, s_idx)])
 
-    plans.append(plan)
+    # Define scoring function for ranking alternatives
+    def food_score(food, chosen_food):
+        # smaller difference = higher score
+        diff_cal = abs(food["cal"] - chosen_food["cal"])
+        diff_prot = abs(food["prot"] - chosen_food["prot"])
+        diff_fat = abs(food["fat"] - chosen_food["fat"])
+        diff_sugar = abs(food["sugar"] - chosen_food["sugar"])
+        dosha_sim = (
+            abs(food["vata_score"] - chosen_food["vata_score"]) +
+            abs(food["pitta_score"] - chosen_food["pitta_score"]) +
+            abs(food["kapha_score"] - chosen_food["kapha_score"])
+        )
+        # negative because we want higher score = closer
+        return -(diff_cal + diff_prot + diff_fat + diff_sugar + dosha_sim)
 
-    # print plan
+    # Print plan with top 3 alternatives per slot
+    TOP_K = 6
+
     for d in DAYS:
         print(f"\nDay {d+1}:")
-
-        # daily totals
+        # compute daily totals
         totcal = sum(food["cal"] for s in SLOTS for food in plan[d][s])
         totprot = sum(food["prot"] for s in SLOTS for food in plan[d][s])
         totfat = sum(food["fat"] for s in SLOTS for food in plan[d][s])
@@ -343,20 +347,25 @@ for k in range(3):  # top 3 plans
         print(f"  Totals — cal: {totcal}, prot: {totprot}g, fat: {totfat}g, sugar: {totsugar}g")
 
         for s in SLOTS:
-            foods_in_slot = plan[d][s]
-            if foods_in_slot:
-                for rank, food in enumerate(foods_in_slot, 1):
+            chosen_food = plan[d][s][0] if plan[d][s] else None
+            if chosen_food:
+                # rank all foods by similarity to chosen_food
+                ranked = sorted(
+                    FOODS,
+                    key=lambda f: food_score(f, chosen_food),
+                    reverse=True
+                )
+                print(f"  {s.capitalize()}:")
+                for rank, food in enumerate(ranked[:TOP_K], 1):
                     print(
-                        f"    {s.capitalize():9} {rank}. {food['name']} "
+                        f"    Option {rank}. {food['name']} "
                         f"(cal {food['cal']}, prot {food['prot']}g, fat {food['fat']}g, sugar {food['sugar']}g, "
                         f"V:{food['vata_score']}, P:{food['pitta_score']}, K:{food['kapha_score']})"
                     )
             else:
-                print(f"    {s.capitalize():9}: None")
-
-    # exclude this solution → force solver to find a new one
-    model.Add(sum(chosen_vars) <= len(chosen_vars) - 1)
-
+                print(f"  {s.capitalize()}: None")
+else:
+    print("No solution found. Status:", res)
 
 
 # ------------------

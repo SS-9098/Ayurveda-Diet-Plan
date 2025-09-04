@@ -8,6 +8,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 import pandas as pd
 import ast
+import time
 
 # ------------------
 # 1) Example food database (extend with real dataset or CSV)
@@ -27,8 +28,12 @@ def load_foods(csv_path):
 
     foods = []
     for i, row in df.iterrows():
+        if i>1000:
+            break
+        if int(row['cal'])==0:
+            continue
         foods.append({
-            "id": i,
+            "id": int(row["recipe_id"]),
             "name": row["name"],
             "cal": int(row["cal"]) or 0,
             "prot": int(row["prot"]) or 0,
@@ -36,26 +41,27 @@ def load_foods(csv_path):
             "carb": int(row["carb"]) or 0,
             "sugar": int(row["sugar"]) or 0,
             "allowed_slots": ["breakfast","lunch","snack","dinner"],
-            "incompatible_with": ast.literal_eval(row["incompatible_with"]),
-            #"ingredients": row["ingredients"],
+            # "incompatible_with": ast.literal_eval(row["incompatible_with"]),
+            "incompatible_with":[],
+            # "ingredients": row["ingredients"],
             "vata_score": float(row["vata_score"]) or 0,
             "pitta_score": float(row["pitta_score"]) or 0,
             "kapha_score": float(row["kapha_score"]) or 0,
         })
-    for food in foods:
-        new_incompat = []
-        for other in food["incompatible_with"]:
-            if isinstance(other, str) and other.isdigit():
-                other = int(other)
-            if isinstance(other, int) and other in id_to_idx:
-                new_incompat.append(id_to_idx[other])
-        food["incompatible_with"] = new_incompat
+    # for food in foods:
+    #     new_incompat = []
+    #     for other in food["incompatible_with"]:
+    #         if isinstance(other, str) and other.isdigit():
+    #             other = int(other)
+    #         if isinstance(other, int) and other in id_to_idx:
+    #             new_incompat.append(id_to_idx[other])
+    #     food["incompatible_with"] = new_incompat
     return foods
 
-FOODS = load_foods("ayurvedic_food_dataset_large.csv")
+FOODS = load_foods("food_recipies.csv")
 FOOD_BY_ID = {f["id"]: f for f in FOODS}
 N_F = len(FOODS)
-print(f"Loaded {N_F} foods from CSV")
+print(f"Loaded {N_F} recipes from CSV")
 
 
 DAYS = list(range(7))
@@ -138,21 +144,23 @@ for f in range(N_F):
     model.Add(sum(x[(f,d,s)] for d in DAYS for s in range(len(SLOTS))) <= max_repeats_per_week)
 
 # Constraint: incompatibilities — no pair that are incompatible may appear in same meal (same day+slot)
-for f in range(N_F):
-    incompatible = FOOD_BY_ID[f]["incompatible_with"]
-    if not incompatible:
-        continue
-    for d in DAYS:
-        for s in range(len(SLOTS)):
-            for other_id in incompatible:
-                # can't have both f and other_id in same day+slot
-                model.Add(x[(f,d,s)] + x[(other_id,d,s)] <= 1)
+# for f in range(N_F):
+#     incompatible = FOOD_BY_ID[f]["incompatible_with"]
+#     if not incompatible:
+#         continue
+#     for d in DAYS:
+#         for s in range(len(SLOTS)):
+#             for other_id in incompatible:
+#                 # can't have both f and other_id in same day+slot
+#                 model.Add(x[(f,d,s)] + x[(other_id,d,s)] <= 1)
 
 # Macro sum per day
 # We'll create integer scaled sums (all grams / kcal are integers already)
 # For CP-SAT objective use deviations: create int variables for positive and negative deviation
 max_dev_cal = int(user_daily_targets["cal"] * 2)  # generous bound
 max_dev_macro = 500  # arbitrary bound for protein/fat/sugar dev
+
+
 
 dev_cal_pos = {}
 dev_cal_neg = {}
@@ -220,11 +228,27 @@ for f_idx, food in enumerate(FOODS):
 
 # Objective: minimize weighted sum of deviations minus weight * dosha_matches
 # We need integer weights. Choose weights to balance priorities.
-W_CAL = 15
-W_PROT = 3
-W_FAT = 6
-W_SUGAR = 6
+W_CAL = 40
+W_PROT = 40
+W_FAT = 40
+W_SUGAR = 40
 W_DOSHA = 10   # reward for dosha-balancing food (we'll subtract from cost)
+
+
+def add_range_constraint(total, target, tol):
+    model.Add(total >= target - tol)
+    model.Add(total <= target + tol)
+
+for d in DAYS:
+    total_cal = sum(FOODS[f]["cal"]   * x[(f,d,s)] for f in range(N_F) for s in range(len(SLOTS)))
+    total_prot= sum(FOODS[f]["prot"]  * x[(f,d,s)] for f in range(N_F) for s in range(len(SLOTS)))
+    total_fat = sum(FOODS[f]["fat"]   * x[(f,d,s)] for f in range(N_F) for s in range(len(SLOTS)))
+    total_sugar=sum(FOODS[f]["sugar"] * x[(f,d,s)] for f in range(N_F) for s in range(len(SLOTS)))
+
+    add_range_constraint(total_cal,   user_daily_targets["cal"], 200)   # allow ±200 kcal
+    add_range_constraint(total_prot,   user_daily_targets["prot"], 10)     # allow ±10g protein
+    add_range_constraint(total_fat,    user_daily_targets["fat"], 15)     # allow ±15g fat
+    add_range_constraint(total_sugar,  user_daily_targets["sugar"], 10)     # allow ±10g sugar
 
 
 def compute_score(food, user_dosha, target_cal=2000, target_prot=60, target_fat=70, target_sugar=30, W_DOSHA=10):
@@ -306,10 +330,13 @@ class MealEnumerator(cp_model.CpSolverSolutionCallback):
 
 # Number of alternatives per slot
 # After solving your model once
+start = time.time()
 res = solver.Solve(model)
+end = time.time()
 
 if res == cp_model.OPTIMAL or res == cp_model.FEASIBLE:
     print("Solution found. Objective:", solver.ObjectiveValue())
+    print("Time taken: {:.2f} seconds".format(end - start))
 
     # Construct base plan
     plan = {d: {s: [] for s in SLOTS} for d in DAYS}

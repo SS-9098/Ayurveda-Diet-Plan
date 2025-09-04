@@ -7,7 +7,7 @@ client: MongoClient = None
 def get_db():
     if client is None:
         raise Exception("Database client not initialized. Call connect_to_mongo first.")
-    return client[settings.DB_NAME]
+    return client[settings.AYUSHMITRA]
 
 async def connect_to_mongo():
     global client

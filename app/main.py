@@ -19,7 +19,9 @@ load_dotenv()
 async def lifespan(app: FastAPI):
     logger.info("Application startup...")
     from app.db.database import connect_to_mongo, close_mongo_connection
+    from app.services.diet_service import preload_caches
     await connect_to_mongo(app)
+    await preload_caches(app)  # Preload data into cache
     yield
     logger.info("Application shutdown...")
     await close_mongo_connection(app)

@@ -1,32 +1,34 @@
-import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import Any
 import httpx
+import uvicorn
 
 # Import the generate_meal_plan function from OR_Model.py
 from OR_Model import generate_meal_plan
 
 app = FastAPI()
 
+# Hardcoded user profile URL
+USER_PROFILE_URL = "https://example.com/api/user-profile"
+
 # Define a Pydantic model for the user profile
 class UserProfile(BaseModel):
-    cal: 2000
-    prot: 75
-    fat: 60
-    sugar: 30
-    dosha: "Vata"
-    nuts: False
-    diary: False
-    veg: False
-    vegan: False
+    cal: int
+    prot: int
+    fat: int
+    sugar: int
+    dosha: str
+    nuts: bool
+    diary: bool
+    veg: bool
+    vegan: bool
 
-@app.get("/generate-meal-plan")
-def generate_meal_plan_endpoint(user_profile_url: str):
+@app.post("/generate-meal-plan")
+def generate_meal_plan_endpoint():
     try:
         # Fetch the user profile from the external API
         with httpx.Client() as client:
-            response = client.get(user_profile_url)
+            response = client.get(USER_PROFILE_URL)
             if response.status_code != 200:
                 raise HTTPException(status_code=400, detail="Failed to fetch user profile.")
             user_profile_dict = response.json()

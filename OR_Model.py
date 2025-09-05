@@ -225,10 +225,7 @@ def generate_meal_plan(csv_path="food_recipies.csv",
                 })
             plan[d+1][sname] = slot_list
     plan["solver_time_sec"] = end - start
-    return {
-        "days": plan,
-        "solver_time_sec": end - start
-    }
+    return plan
 
 
 # ------------------
@@ -237,11 +234,12 @@ def generate_meal_plan(csv_path="food_recipies.csv",
 if __name__ == "__main__":
     csv_file = "food_recipies.csv"
     meal_plan = generate_meal_plan(csv_file)
+    print(meal_plan)
     if "error" in meal_plan:
         print("\n❌ Solver failed:", meal_plan["error"])
-    else:
-        print(f"\nSolver finished in {meal_plan['solver_time_sec']:.2f}s")
-    for day, slots in meal_plan["days"].items():
+    # else:
+    #     print(f"\nSolver finished in {meal_plan['solver_time_sec']:.2f}s")
+    for day, slots in meal_plan.items():
         print(f"\nDay {day}:")
         for slot, foods in slots.items():
             if not foods:

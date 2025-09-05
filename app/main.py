@@ -12,8 +12,8 @@ load_dotenv()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup: Connect to database
-    from app.db.database import get_db
-    get_db()
+    from app.db.database import get_database
+    get_database()
     yield
     # Shutdown: Nothing to clean up yet
 

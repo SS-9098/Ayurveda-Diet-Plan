@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.models.account_models import DoctorProfile, PatientProfile, AccountInDB
+from app.models.account_models import DoctorProfile, PatientCreate, AccountInDB
 from app.db.database import get_collection
 import secrets
 import string
@@ -26,7 +26,7 @@ async def register_doctor(doctor: DoctorProfile):
 
 
 @router.post("/{doctor_id}/patients/register", response_model=AccountInDB)
-async def register_patient(doctor_id: str, patient: PatientProfile):
+async def register_patient(doctor_id: str, patient: PatientCreate):
     accounts_coll = get_collection("accounts")
     # Check if doctor exists
     doctor = await accounts_coll.find_one({"_id": doctor_id, "role": "doctor"})

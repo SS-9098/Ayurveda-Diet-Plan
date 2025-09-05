@@ -2,14 +2,13 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from app.core.security import decode_access_token
 from app.models.account_models import TokenPayload
-from app.db.database import get_db, get_collection
-
+from backend.db_mongo import get_database
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 async def get_user(email: str):
-    db = get_collection("accounts")
-    user = await db.find_one({"email": email})
+    db = get_database()
+    user = await db["users"].find_one({"email": email})
     return user
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):

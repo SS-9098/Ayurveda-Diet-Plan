@@ -39,4 +39,8 @@ class RecipePublic(BaseModel):
     class Config:
         populate_by_name = True
         arbitrary_types_allowed = True
+
+class IngredientListResponse(BaseModel):
+    favor_ingredients: List[str]
+    avoid_ingredients: List[str]
 # Pydantic models for Recipe/Ingredient schemas

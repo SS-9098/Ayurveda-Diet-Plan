@@ -1,5 +1,6 @@
 # Environment variables (DB_URI, JWT_SECRET)
-from pydantic_settings import BaseSettings
+from pydantic import BaseSettings
+
 class Settings(BaseSettings):
     MONGO_URI: str
     AYUSHMITRA: str

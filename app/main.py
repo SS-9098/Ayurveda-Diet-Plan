@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Depends
+# app/main.py
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from dotenv import load_dotenv
@@ -16,14 +17,12 @@ load_dotenv()
 # Setup application lifecycle
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup: Connect to database
     logger.info("Application startup...")
-    from app.db.database import get_db,connect_to_mongo
-    await connect_to_mongo()
-    get_db()
+    from app.db.database import connect_to_mongo, close_mongo_connection
+    await connect_to_mongo(app)
     yield
-    # Shutdown: Nothing to clean up yet
-    logger.info("Application shutdown.")
+    logger.info("Application shutdown...")
+    await close_mongo_connection(app)
 
 # Create FastAPI app
 app = FastAPI(
@@ -61,5 +60,5 @@ async def root():
     return {"message": "Welcome to AyurCare API"}
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 8000))
+    port = int(os.getenv("PORT", 8001))
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)

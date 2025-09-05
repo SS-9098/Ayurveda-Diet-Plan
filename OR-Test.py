@@ -228,10 +228,10 @@ for f_idx, food in enumerate(FOODS):
 
 # Objective: minimize weighted sum of deviations minus weight * dosha_matches
 # We need integer weights. Choose weights to balance priorities.
-W_CAL = 40
-W_PROT = 40
-W_FAT = 40
-W_SUGAR = 40
+W_CAL = 10
+W_PROT = 10
+W_FAT = 10
+W_SUGAR = 10
 W_DOSHA = 10   # reward for dosha-balancing food (we'll subtract from cost)
 
 

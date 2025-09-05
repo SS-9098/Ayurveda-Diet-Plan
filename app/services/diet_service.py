@@ -14,16 +14,16 @@ async def preload_caches(app):
     print("Preloading ingredients and recipes into cache...")
     db = app.state.mongo_client[settings.AYUSHMITRA]
 
-    ingredients_coll = db["ingredients"]
+    ingredients_coll = db["food_ingredients"]
     cursor = ingredients_coll.find({}, {"name": 1, "category": 1, "dosha_info": 1, "_id": 0})
     async for doc in cursor:
         INGREDIENTS_CACHE[doc['name'].lower()] = doc
 
-    recipes_coll = db["recipes"]
+    recipes_coll = db["food_recipes"]
     cursor = recipes_coll.find({})
     async for doc in cursor:
         # Ensure all required fields exist to prevent runtime errors
-        if 'normalized_ingredients' in doc and 'nutrition_per_serving' in doc:
+        if 'ingredients' in doc and 'nutrition_per_serving' in doc:
             RECIPES_CACHE.append(doc)
     print(f"Cached {len(INGREDIENTS_CACHE)} ingredients and {len(RECIPES_CACHE)} recipes.")
 

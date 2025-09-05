@@ -7,7 +7,6 @@ class Settings(BaseSettings):
     GROQ1: str
     GROQ2: str
     GROQ3: str
-    DB_NAME: str
     INGREDIENTS: str
     RECIPES: str
     ACCOUNTS: str

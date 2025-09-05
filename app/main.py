@@ -50,11 +50,12 @@ app.add_middleware(
 )
 
 # Import and include routers
-from app.api.router import doctors, patients
+from app.api.router import doctors, patients, accounts
 
 # app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 app.include_router(doctors.router, prefix="/doctors", tags=["Doctors"])
 app.include_router(patients.router, prefix="/patients", tags=["Patients"])
+app.include_router(accounts.router, prefix="/accounts", tags=["Accounts"])
 
 
 @app.get("/", tags=["Health"])

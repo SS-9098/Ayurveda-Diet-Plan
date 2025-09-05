@@ -53,8 +53,12 @@ class AccountBase(BaseModel):
     email: EmailStr
 
 
+class AccountCreate(AccountBase):
+    password: str = Field(..., min_length=6)
+
+
 # --- Models for Creating New Accounts ---
-class DoctorCreate(AccountBase):
+class DoctorCreate(AccountCreate):
     license_number: str
     issuing_council: str
     state_of_registration: str
@@ -63,7 +67,7 @@ class DoctorCreate(AccountBase):
     aadhaar_number: str
 
 
-class PatientCreate(AccountBase):
+class PatientCreate(AccountCreate):
     dosha_result: str
     allergies: List[str] = []
     questionnaire_answers: Dict[str, int] = {}
@@ -72,6 +76,7 @@ class PatientCreate(AccountBase):
 # Model representing the document in the 'accounts' collection
 class AccountInDB(AccountBase):
     id: str = Field(alias="_id")
+    hashed_password: str
     role: Literal["doctor", "patient"]
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
@@ -83,8 +88,20 @@ class AccountInDB(AccountBase):
 
 
 # Public-facing model (used for API responses)
-class AccountPublic(AccountInDB):
-    pass
+class AccountPublic(AccountBase):
+    id: str = Field(alias="_id")
+    role: Literal["doctor", "patient"]
+    created_at: datetime
+    doctor_profile: Optional[DoctorProfile] = None
+    patient_profile: Optional[PatientProfile] = None
+
+    class Config:
+        populate_by_name = True
+
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str
 
 
 # --- Authentication Models ---

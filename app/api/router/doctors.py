@@ -1,13 +1,14 @@
 from fastapi import APIRouter, HTTPException, Body, Depends
 from fastapi.responses import StreamingResponse
 from motor.motor_asyncio import AsyncIOMotorCollection
-from app.models.account_models import DoctorCreate, PatientCreate, AccountPublic, BiologicalData, PatientBioUpdate
+from app.models.account_models import DoctorCreate, PatientCreate, AccountPublic, BiologicalData, PatientBioUpdate, LoginRequest
 from app.models.recipe_models import IngredientListResponse
 from app.db.database import get_collection
 from app.services import diet_service, report_service
 from datetime import datetime
 import secrets
 import string
+from typing import Dict
 
 router = APIRouter()
 
@@ -18,8 +19,8 @@ async def register_doctor(
     accounts_coll: AsyncIOMotorCollection = Depends(get_collection("accounts"))
 ):
     """Registers a new doctor and returns their profile with a unique ID."""
-    if await accounts_coll.find_one({"doctor_profile.license_number": doctor_data.license_number}):
-        raise HTTPException(status_code=400, detail="Doctor with this license number already registered")
+    if await accounts_coll.find_one({"email": doctor_data.email}):
+        raise HTTPException(status_code=400, detail="Doctor with this email already registered")
 
     doctor_id = f"DOC-{''.join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(8))}"
 
@@ -27,6 +28,7 @@ async def register_doctor(
         "_id": doctor_id,
         "first_name": doctor_data.first_name, "last_name": doctor_data.last_name,
         "email": doctor_data.email, "role": "doctor", "created_at": datetime.utcnow(),
+        "password": doctor_data.password,  # Storing plain text password as requested
         "doctor_profile": {
             "license_number": doctor_data.license_number, "issuing_council": doctor_data.issuing_council,
             "state_of_registration": doctor_data.state_of_registration,
@@ -38,19 +40,21 @@ async def register_doctor(
         "patient_profile": None
     }
     await accounts_coll.insert_one(new_doctor_doc)
-    return new_doctor_doc
+    # Fetch the document back to ensure it matches the response model
+    created_doctor = await accounts_coll.find_one({"_id": doctor_id})
+    return created_doctor
 
 
-@router.get("/{doctor_id}", response_model=AccountPublic)
+@router.post("/login", response_model=Dict[str, str])
 async def doctor_login(
-    doctor_id: str,
+    login_data: LoginRequest,
     accounts_coll: AsyncIOMotorCollection = Depends(get_collection("accounts"))
 ):
-    """Simplified login for a doctor by fetching their data using the ID."""
-    doctor = await accounts_coll.find_one({"_id": doctor_id, "role": "doctor"})
-    if not doctor:
-        raise HTTPException(status_code=404, detail="Doctor ID not found")
-    return doctor
+    """Authenticates a doctor and returns their ID and role."""
+    doctor = await accounts_coll.find_one({"email": login_data.email, "role": "doctor"})
+    if not doctor or doctor["password"] != login_data.password:
+        raise HTTPException(status_code=401, detail="Incorrect email or password")
+    return {"_id": doctor["_id"], "role": doctor["role"]}
 
 
 @router.post("/{doctor_id}/patients/register", response_model=AccountPublic, status_code=201)
@@ -62,12 +66,16 @@ async def register_patient_under_doctor(
     """Registers a new patient under a specific doctor's care."""
     if not await accounts_coll.find_one({"_id": doctor_id, "role": "doctor"}):
         raise HTTPException(status_code=404, detail="Doctor not found")
+    
+    if await accounts_coll.find_one({"email": patient_data.email}):
+        raise HTTPException(status_code=400, detail="Patient with this email already exists")
 
     patient_id = f"PATIENT-{''.join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(6))}"
 
     new_patient_doc = {
         "_id": patient_id, "first_name": patient_data.first_name, "last_name": patient_data.last_name,
         "email": patient_data.email, "role": "patient", "created_at": datetime.utcnow(),
+        "password": patient_data.first_name,  # Default password is the first name
         "doctor_profile": None,
         "patient_profile": {
             "assigned_doctor_id": doctor_id, "dosha_result": patient_data.dosha_result,
@@ -76,7 +84,8 @@ async def register_patient_under_doctor(
         }
     }
     await accounts_coll.insert_one(new_patient_doc)
-    return new_patient_doc
+    created_patient = await accounts_coll.find_one({"_id": patient_id})
+    return created_patient
 
 
 @router.post("/patients/{patient_id}/generate-ingredient-list", response_model=IngredientListResponse)

@@ -15,7 +15,7 @@ def load_foods(csv_path, nuts=False, diary=False, veg=False, vegan=False):
     df = pd.read_csv(csv_path)
     foods = []
     for i, row in df.iterrows():
-        if i > 2000:
+        if i > 1000:
             break
         if int(row['calories']) == 0:
             continue
@@ -31,6 +31,20 @@ def load_foods(csv_path, nuts=False, diary=False, veg=False, vegan=False):
         if vegan:
             if row['diary'] or row['nuts']:
                 continue
+
+        # if "allowed_slots" in df.columns:
+        #     raw_slots = str(row["allowed_slots"]).strip()
+        #     allowed = [s.strip().lower() for s in raw_slots.split(",") if s.strip()]
+        # else:
+        #     # fallback: if not present, allow all slots
+        #     allowed = ["breakfast", "lunch", "snacks", "dinner"]
+        #
+        # if "lunch" in allowed and "dinner" not in allowed:
+        #     allowed.append("dinner")
+        # if "dinner" in allowed and "lunch" not in allowed:
+        #     allowed.append("lunch")
+        allowed = ["breakfast", "lunch", "snacks", "dinner"]
+
         foods.append({
             "id": int(row["recipe_id"]),
             "name": row["name"],
@@ -39,7 +53,7 @@ def load_foods(csv_path, nuts=False, diary=False, veg=False, vegan=False):
             "fat": int(row["fat_g"]) or 0,
             "carb": int(row["carbohydrate_g"]) or 0,
             "sugar": int(row["sugar_g"]) or 0,
-            "allowed_slots": [row["slots"]],
+            "allowed_slots": allowed,
             "incompatible_with": [],
             "vata_score": float(row["vata_score"]) or 0,
             "pitta_score": float(row["pitta_score"]) or 0,
@@ -79,7 +93,7 @@ def generate_meal_plan(csv_path,
     N_F = len(FOODS)
 
     DAYS = list(range(7))
-    SLOTS = ["breakfast", "lunch", "snack", "dinner"]
+    SLOTS = ["breakfast", "lunch", "snacks", "dinner"]
 
     # tolerances (±)
     cal_tol = int(user_profile["cal"] * 0.1)
@@ -211,7 +225,10 @@ def generate_meal_plan(csv_path,
                 })
             plan[d+1][sname] = slot_list
     plan["solver_time_sec"] = end - start
-    return plan
+    return {
+        "days": plan,
+        "solver_time_sec": end - start
+    }
 
 
 # ------------------
@@ -220,10 +237,11 @@ def generate_meal_plan(csv_path,
 if __name__ == "__main__":
     csv_file = "food_recipies.csv"
     meal_plan = generate_meal_plan(csv_file)
-    for day, slots in meal_plan.items():
-        if day == "solver_time_sec":
-            print(f"\nSolver finished in {slots:.2f}s")
-            continue
+    if "error" in meal_plan:
+        print("\n❌ Solver failed:", meal_plan["error"])
+    else:
+        print(f"\nSolver finished in {meal_plan['solver_time_sec']:.2f}s")
+    for day, slots in meal_plan["days"].items():
         print(f"\nDay {day}:")
         for slot, foods in slots.items():
             if not foods:

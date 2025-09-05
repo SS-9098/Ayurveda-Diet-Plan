@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Body, Depends
 from fastapi.responses import StreamingResponse
 from motor.motor_asyncio import AsyncIOMotorCollection
-from app.models.account_models import DoctorCreate, PatientCreate, AccountPublic, BiologicalData
+from app.models.account_models import DoctorCreate, PatientCreate, AccountPublic, BiologicalData, PatientBioUpdate
 from app.models.recipe_models import IngredientListResponse
 from app.db.database import get_collection
 from app.services import diet_service, report_service
@@ -113,19 +113,29 @@ async def download_ingredient_chart_pdf(
 @router.post("/patients/{patient_id}/update-bio", response_model=AccountPublic)
 async def update_patient_bio(
     patient_id: str,
-    bio_data: BiologicalData,
+    update_data: PatientBioUpdate,
     accounts_coll: AsyncIOMotorCollection = Depends(get_collection("accounts"))
 ):
     """
-    Updates the biological data for a patient. This is a prerequisite for generating a recipe plan.
+    Updates the biological and dietary data for a patient. This also recalculates their daily nutritional needs.
     """
     patient = await accounts_coll.find_one({"_id": patient_id, "role": "patient"})
     if not patient:
         raise HTTPException(status_code=404, detail="Patient not found")
 
+    # Calculate daily needs based on the new biological data
+    daily_needs = diet_service.calculate_daily_needs(update_data.biological_data)
+
+    # Prepare the update document
+    update_fields = {
+        "patient_profile.biological_data": update_data.biological_data.dict(),
+        "patient_profile.dietary_patterns": update_data.dietary_patterns,
+        "patient_profile.daily_needs": daily_needs
+    }
+
     await accounts_coll.update_one(
         {"_id": patient_id},
-        {"$set": {"patient_profile.biological_data": bio_data.dict()}}
+        {"$set": update_fields}
     )
 
     updated_patient = await accounts_coll.find_one({"_id": patient_id})

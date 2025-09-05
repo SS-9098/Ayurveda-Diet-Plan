@@ -52,16 +52,58 @@ def generate_ingredient_list(dosha: str, allergies: list[str]) -> dict:
 
 
 def calculate_daily_needs(bio_data: BiologicalData) -> dict:
-    """Calculates estimated daily caloric needs using the Harris-Benedict Equation."""
-    if bio_data.gender == "male":
-        bmr = 88.362 + (13.397 * bio_data.weight_kg) + (4.799 * bio_data.height_cm) - (5.677 * bio_data.age)
-    else:  # female
-        bmr = 447.593 + (9.247 * bio_data.weight_kg) + (3.098 * bio_data.height_cm) - (4.330 * bio_data.age)
+    """
+    Calculates estimated daily nutritional needs including calories, protein, carbs, fats, and sugar limit.
+    This function now integrates all necessary calculations based on standard guidelines.
+    """
 
-    activity_multipliers = {"sedentary": 1.2, "light": 1.375, "moderate": 1.55, "active": 1.725, "very_active": 1.9}
-    calories = bmr * activity_multipliers[bio_data.activity_level]
+    def _calculate_calories(bio_data: BiologicalData) -> float:
+        """Calculates TDEE using the Harris-Benedict Equation."""
+        if bio_data.gender == "male":
+            bmr = 88.362 + (13.397 * bio_data.weight_kg) + (4.799 * bio_data.height_cm) - (5.677 * bio_data.age)
+        else:  # female
+            bmr = 447.593 + (9.247 * bio_data.weight_kg) + (3.098 * bio_data.height_cm) - (4.330 * bio_data.age)
 
-    return {"calories": round(calories)}
+        activity_multipliers = {"sedentary": 1.2, "light": 1.375, "moderate": 1.55, "active": 1.725, "very_active": 1.9}
+        tdee = bmr * activity_multipliers[bio_data.activity_level]
+        return tdee
+
+    def _calculate_protein_g(weight_kg: float, activity_level: str) -> float:
+        """Calculates protein needs based on DRI, adjusted for activity."""
+        protein_multipliers = {"sedentary": 0.8, "light": 1.0, "moderate": 1.2, "active": 1.4, "very_active": 1.6}
+        return weight_kg * protein_multipliers[activity_level]
+
+    def _calculate_macro_avg_g(total_calories: float, percent_range: tuple[float, float],
+                               calories_per_gram: int) -> float:
+        """Calculates the average grams for a macronutrient based on a percentage of total calories."""
+        # Calculate the average of the percentage range (e.g., (0.20 + 0.35) / 2 = 0.275 for fat)
+        avg_percent = (percent_range[0] + percent_range[1]) / 2
+        avg_g = (total_calories * avg_percent) / calories_per_gram
+        return avg_g
+
+    # 1. Calculate Total Daily Calories (TDEE)
+    total_calories = _calculate_calories(bio_data)
+
+    # 2. Calculate Protein (g)
+    protein_g = _calculate_protein_g(bio_data.weight_kg, bio_data.activity_level)
+
+    # 3. Calculate Average Fat (g) - based on an average of the 20-35% range
+    fat_g_avg = _calculate_macro_avg_g(total_calories, (0.20, 0.35), 9)
+
+    # 4. Calculate Average Carbohydrate (g) - based on an average of the 45-65% range
+    carbs_g_avg = _calculate_macro_avg_g(total_calories, (0.45, 0.65), 4)
+
+    # 5. Calculate Added Sugar Limit (g) - based on <10% of total calories
+    added_sugar_g_limit = (total_calories * 0.10) / 4
+
+    # Combine all results into a single response object with average values
+    return {
+        "calories_kcal": round(total_calories),
+        "protein_g": round(protein_g),
+        "fat_g_avg": round(fat_g_avg),
+        "carbohydrate_g_avg": round(carbs_g_avg),
+        "added_sugar_g_limit": round(added_sugar_g_limit)
+    }
 
 
 def generate_recipe_plan(patient_profile: dict) -> dict:

@@ -12,9 +12,19 @@ class BiologicalData(BaseModel):
     activity_level: Literal["sedentary", "light", "moderate", "active", "very_active"]
 
 
+class DailyNeeds(BaseModel):
+    calories_kcal: int
+    protein_g: int
+    fat_g_avg: int
+    carbohydrate_g_avg: int
+    added_sugar_g_limit: int
+
+
 class PatientProfile(BaseModel):
     assigned_doctor_id: str
     biological_data: Optional[BiologicalData] = None
+    daily_needs: Optional[DailyNeeds] = None
+    dietary_patterns: Literal["veg", "vegan", "non-veg"] = "non-veg"
     questionnaire_answers: Dict[str, int] = {}
     dosha_result: str
     allergies: List[str] = []
@@ -29,6 +39,11 @@ class DoctorProfile(BaseModel):
     registration_date: datetime
     registration_validity_date: datetime
     aadhaar_number: str  # Storing as a dummy string for the hackathon
+
+
+class PatientBioUpdate(BaseModel):
+    biological_data: BiologicalData
+    dietary_patterns: Optional[Literal["veg", "vegan", "non-veg"]] = "non-veg"
 
 
 # --- Base Model for Account Info ---

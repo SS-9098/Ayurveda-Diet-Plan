@@ -4,6 +4,11 @@ import uvicorn
 from dotenv import load_dotenv
 import os
 from contextlib import asynccontextmanager
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -12,10 +17,13 @@ load_dotenv()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup: Connect to database
-    from app.db.database import get_db
+    logger.info("Application startup...")
+    from app.db.database import get_db,connect_to_mongo
+    await connect_to_mongo()
     get_db()
     yield
     # Shutdown: Nothing to clean up yet
+    logger.info("Application shutdown.")
 
 # Create FastAPI app
 app = FastAPI(
@@ -26,20 +34,27 @@ app = FastAPI(
 )
 
 # Configure CORS
+origins = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "*" # Allow all for hackathon
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For development; restrict in production
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Import and include routers
-from routes.auth import router as auth_router
-from routes.users import router as users_router
+from app.api.router import doctors, patients
 
-app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
-app.include_router(users_router, prefix="/users", tags=["Users"])
+# app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+app.include_router(doctors.router, prefix="/doctors", tags=["Doctors"])
+app.include_router(patients.router, prefix="/patients", tags=["Patients"])
+
 
 @app.get("/", tags=["Health"])
 async def root():

@@ -1,27 +1,21 @@
 from app.db.database import get_collection
 from app.models.account_models import BiologicalData
 import random
-from app.core.config import settings
 
 # Caches to hold data in memory for high performance
 INGREDIENTS_CACHE = {}
 RECIPES_CACHE = []
 
 
-async def preload_caches(app):
-
+def preload_caches():
     """Loads all ingredients and recipes from DB into memory on startup."""
     print("Preloading ingredients and recipes into cache...")
-    db = app.state.mongo_client[settings.AYUSHMITRA]
-
-    ingredients_coll = db["ingredients"]
-    cursor = ingredients_coll.find({}, {"name": 1, "category": 1, "dosha_info": 1, "_id": 0})
-    async for doc in cursor:
+    ingredients_coll = get_collection("ingredients")
+    for doc in ingredients_coll.find({}, {"name": 1, "category": 1, "dosha_info": 1, "_id": 0}):
         INGREDIENTS_CACHE[doc['name'].lower()] = doc
 
-    recipes_coll = db["recipes"]
-    cursor = recipes_coll.find({})
-    async for doc in cursor:
+    recipes_coll = get_collection("recipes")
+    for doc in recipes_coll.find({}):
         # Ensure all required fields exist to prevent runtime errors
         if 'normalized_ingredients' in doc and 'nutrition_per_serving' in doc:
             RECIPES_CACHE.append(doc)

@@ -65,7 +65,7 @@ def load_foods(csv_path, nuts=False, diary=False, veg=False, vegan=False):
 # 2) Meal planner function
 # ------------------
 
-def generate_meal_plan(csv_path,
+def generate_meal_plan(csv_path="food_recipies.csv",
                        user_profile=None,
                        max_repeats_per_week=2,
                        solver_time_limit=30):

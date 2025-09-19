@@ -38,7 +38,7 @@ class DoctorProfile(BaseModel):
     state_of_registration: str
     registration_date: datetime
     registration_validity_date: datetime
-    aadhaar_number: str  # Storing as a dummy string for the hackathon
+    # Storing as a dummy string for the hackathon
 
 
 class PatientBioUpdate(BaseModel):
@@ -64,7 +64,6 @@ class DoctorCreate(AccountCreate):
     state_of_registration: str
     registration_date: datetime
     registration_validity_date: datetime
-    aadhaar_number: str
 
 
 class PatientCreate(AccountCreate):

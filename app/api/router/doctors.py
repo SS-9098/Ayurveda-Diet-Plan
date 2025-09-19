@@ -34,7 +34,6 @@ async def register_doctor(
             "state_of_registration": doctor_data.state_of_registration,
             "registration_date": doctor_data.registration_date,
             "registration_validity_date": doctor_data.registration_validity_date,
-            "aadhaar_number": doctor_data.aadhaar_number,
             "registration_status": "Active"
         },
         "patient_profile": None

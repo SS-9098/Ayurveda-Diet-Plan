@@ -23,7 +23,6 @@ async def register_doctor(
         raise HTTPException(status_code=400, detail="Doctor with this email already registered")
 
     doctor_id = f"DOC-{''.join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(8))}"
-
     new_doctor_doc = {
         "_id": doctor_id,
         "first_name": doctor_data.first_name, "last_name": doctor_data.last_name,
@@ -41,7 +40,7 @@ async def register_doctor(
     await accounts_coll.insert_one(new_doctor_doc)
     # Fetch the document back to ensure it matches the response model
     created_doctor = await accounts_coll.find_one({"_id": doctor_id})
-    return created_doctor
+    return {"_id":created_doctor.get("_id")}
 
 
 @router.post("/login", response_model=Dict[str, str])
@@ -51,7 +50,7 @@ async def doctor_login(
 ):
     """Authenticates a doctor and returns their ID and role."""
     doctor = await accounts_coll.find_one({"email": login_data.email, "role": "doctor"})
-    if not doctor or doctor["password"] != login_data.password:
+    if not doctor or doctor.get("password")!= login_data.password:
         raise HTTPException(status_code=401, detail="Incorrect email or password")
     return {"_id": doctor["_id"], "role": doctor["role"]}
 

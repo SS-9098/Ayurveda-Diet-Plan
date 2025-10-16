@@ -14,7 +14,7 @@ async def patient_login(
 ):
     """Authenticates a patient and returns their ID and role."""
     patient = await accounts_coll.find_one({"email": login_data.email, "role": "patient"})
-    if not patient or patient["password"] != login_data.password:
+    if not patient or patient.get("password") != login_data.password:
         raise HTTPException(status_code=401, detail="Incorrect email or password")
     return {"_id": patient["_id"], "role": patient["role"]}
 

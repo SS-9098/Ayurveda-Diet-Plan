@@ -6,7 +6,7 @@ from app.models.recipe_models import IngredientListResponse
 from app.db.database import get_collection
 from app.services import diet_service, report_service
 from datetime import datetime
-import secrets
+from uuid import uuid4
 import string
 from typing import Dict
 
@@ -40,7 +40,7 @@ async def register_doctor(
     await accounts_coll.insert_one(new_doctor_doc)
     # Fetch the document back to ensure it matches the response model
     created_doctor = await accounts_coll.find_one({"_id": doctor_id})
-    return {"_id":created_doctor.get("_id")}
+    return {"id":created_doctor.get("_id")}
 
 
 @router.post("/login", response_model=Dict[str, str])
@@ -68,18 +68,25 @@ async def register_patient_under_doctor(
     if await accounts_coll.find_one({"email": patient_data.email}):
         raise HTTPException(status_code=400, detail="Patient with this email already exists")
 
-    patient_id = f"PATIENT-{''.join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(6))}"
+    patient_id = f"PATIENT-{uuid4().hex[:8].upper()}"
 
     new_patient_doc = {
-        "_id": patient_id, "first_name": patient_data.first_name, "last_name": patient_data.last_name,
-        "email": patient_data.email, "role": "patient", "created_at": datetime.utcnow(),
+        "_id": patient_id,
+        "first_name": patient_data.first_name,
+        "last_name": patient_data.last_name,
+        "email": patient_data.email,
+        "role": "patient",
+        "created_at": datetime.utcnow(),
         "password": patient_data.first_name,  # Default password is the first name
         "doctor_profile": None,
         "patient_profile": {
-            "assigned_doctor_id": doctor_id, "dosha_result": patient_data.dosha_result,
-            "allergies": patient_data.allergies, "questionnaire_answers": patient_data.questionnaire_answers,
-            "approved_favor_ingredients": [], "approved_avoid_ingredients": [],
-        }
+            "assigned_doctor_id": doctor_id,
+            "dosha_result": patient_data.dosha_result,
+            "allergies": patient_data.allergies,
+            "questionnaire_answers": patient_data.questionnaire_answers,
+            "approved_favor_ingredients": [],
+            "approved_avoid_ingredients": [],
+        },
     }
     await accounts_coll.insert_one(new_patient_doc)
     created_patient = await accounts_coll.find_one({"_id": patient_id})

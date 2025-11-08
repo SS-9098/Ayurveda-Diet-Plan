@@ -24,7 +24,7 @@ class PatientProfile(BaseModel):
     assigned_doctor_id: str
     biological_data: Optional[BiologicalData] = None
     daily_needs: Optional[DailyNeeds] = None
-    dietary_patterns: Literal["veg", "vegan", "non-veg"] = "non-veg"
+    dietary_patterns: Literal["veg", "vegan", "non-veg"] = "veg"
     questionnaire_answers: Dict[str, int] = {}
     dosha_result: str
     allergies: List[str] = []
@@ -43,7 +43,7 @@ class DoctorProfile(BaseModel):
 
 class PatientBioUpdate(BaseModel):
     biological_data: BiologicalData
-    dietary_patterns: Optional[Literal["veg", "vegan", "non-veg"]] = "non-veg"
+    dietary_patterns: Optional[Literal["veg", "vegan", "non-veg"]] = "veg"
 
 
 # --- Base Model for Account Info ---

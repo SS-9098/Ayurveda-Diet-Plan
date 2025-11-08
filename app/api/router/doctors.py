@@ -52,7 +52,7 @@ async def doctor_login(
     doctor = await accounts_coll.find_one({"email": login_data.email, "role": "doctor"})
     if not doctor or doctor.get("password")!= login_data.password:
         raise HTTPException(status_code=401, detail="Incorrect email or password")
-    return {"_id": doctor["_id"], "role": doctor["role"]}
+    return {"id": doctor["_id"], "role": doctor["role"]}
 
 
 @router.post("/{doctor_id}/patients/register", response_model=AccountPublic, status_code=201)

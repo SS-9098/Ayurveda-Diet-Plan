@@ -63,10 +63,10 @@ def create_recipe_plan_pdf(plan: dict) -> BytesIO:
 
     story = [Paragraph("AyushMitra 7-Day Recipe Plan", title_style), Spacer(1, 24)]
 
-    plan_data = [['Day', 'Breakfast', 'Lunch', 'Dinner', 'Est. Calories']]
+    plan_data = [['Day', 'Breakfast', 'Lunch', 'Snacks','Dinner', 'Est. Calories']]
     for day, meals in plan.items():
         if "error" in meals: continue
-        plan_data.append([day, meals['Breakfast'], meals['Lunch'], meals['Dinner'], meals['Estimated Calories']])
+        plan_data.append([day, meals['Breakfast'], meals['Lunch'], meals['Snacks'],meals['Dinner'], meals['Estimated Calories']])
 
     table = Table(plan_data)
     table.setStyle(TableStyle([

@@ -1,5 +1,30 @@
 from pydantic import BaseModel, Field
-from typing import List, Dict
+from typing import List, Dict, Optional
+
+class SimpleRecipe(BaseModel):
+    name: str
+    cal: int
+    prot: int
+    fat: int
+    sugar: int
+
+class MealChoice(SimpleRecipe):
+    vata_score: Optional[int] = None
+    pitta_score: Optional[int] = None
+    kapha_score: Optional[int] = None
+    alternatives: Optional[List[SimpleRecipe]] = None
+class DayMeals(BaseModel):
+    breakfast: List[MealChoice] = Field(default_factory=list)
+    lunch: List[MealChoice] = Field(default_factory=list)
+    snacks: List[MealChoice] = Field(default_factory=list)
+    dinner: List[MealChoice] = Field(default_factory=list)
+
+class FinalDayMeals(BaseModel):
+    breakfast: MealChoice= Field(default_factory=MealChoice)
+    lunch: MealChoice = Field(default_factory=MealChoice)
+    snacks: MealChoice = Field(default_factory=MealChoice)
+    dinner:  MealChoice= Field(default_factory=MealChoice)
+
 
 # --- Ingredient Models ---
 class IngredientDoshaInfo(BaseModel):

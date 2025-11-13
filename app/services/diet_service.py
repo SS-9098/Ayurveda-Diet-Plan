@@ -1,7 +1,8 @@
 from app.db.database import get_collection
 from app.models.account_models import BiologicalData
-import random
 from app.core.config import settings
+from app.services.OR_Model import generate_meal_plan
+from pathlib import Path
 
 # Caches to hold data in memory for high performance
 INGREDIENTS_CACHE = {}
@@ -106,41 +107,59 @@ def calculate_daily_needs(bio_data: BiologicalData) -> dict:
     }
 
 
-def generate_recipe_plan(patient_profile: dict) -> dict:
-    """Generates a 7-day recipe plan for a patient."""
+def generate_recipe_plan_options(patient_profile: dict) -> dict:
+    """Generates a 7-day recipe plan with alternatives for a patient using the OR_Model solver."""
     if not patient_profile.get('biological_data'):
         return {"error": "Biological data is required to generate a recipe plan."}
 
-    daily_needs = calculate_daily_needs(BiologicalData(**patient_profile['biological_data']))
+    daily_needs = patient_profile.get('daily_needs')
+    user_profile = {
+        "cal": int(daily_needs['calories_kcal']),
+        "prot": int(daily_needs['protein_g']),
+        "fat": int(daily_needs['fat_g_avg']),
+        "sugar": int(daily_needs['added_sugar_g_limit']),
+        "dosha": patient_profile.get('dosha_result', 'Vata'),
+        "nuts": False, "diary": False, "veg": False, "vegan": False
+    }
 
-    favor_ingredients_lower = {ing.lower() for ing in patient_profile.get('approved_favor_ingredients', [])}
-    avoid_ingredients_lower = {ing.lower() for ing in patient_profile.get('approved_avoid_ingredients', [])}
+    csv_setting = getattr(settings, 'FOOD_RECIPES_CSV', 'food_recipies.csv')
+    csv_path = Path(csv_setting)
+    if not csv_path.is_file():
+        csv_path = Path(__file__).resolve().parent / csv_setting
+    if not csv_path.is_file():
+        return {"error": f"Solver error: CSV file not found at {csv_setting} or {csv_path}"}
 
-    suitable_recipes = []
-    for recipe in RECIPES_CACHE:
-        # The recipe's ingredients must be a subset of the 'favor' list
-        # and must not have any intersection with the 'avoid' list.
-        recipe_ing_lower = {ing.lower() for ing in recipe['normalized_ingredients']}
-        if recipe_ing_lower.issubset(favor_ingredients_lower) and not recipe_ing_lower.intersection(
-                avoid_ingredients_lower):
-            suitable_recipes.append(recipe)
+    try:
+        solver_plan = generate_meal_plan(csv_path=str(csv_path), user_profile=user_profile)
+        return solver_plan
+    except Exception as e:
+        return {"error": f"Solver error: {str(e)}"}
 
-    if len(suitable_recipes) < 3:  # Need at least 3 recipes for a day's plan
-        return {"error": "Not enough suitable recipes found in the database to generate a full plan."}
 
+def format_finalized_plan_for_pdf(finalized_plan: dict, daily_needs: dict) -> dict:
+    """Formats a finalized recipe plan from the database into the structure needed for the PDF report."""
     plan = {}
-    for day in range(1, 8):
-        random.shuffle(suitable_recipes)
-        # Simple selection of 3 random recipes for the day
-        day_recipes = suitable_recipes[:4]
-        total_calories = sum(r['nutrition_per_serving']['calories'] for r in day_recipes)
-        plan[f"Day {day}"] = {
-            "Breakfast": day_recipes[0]['name'],
-            "Lunch": day_recipes[1]['name'],
-            "Snack": day_recipes[3]['name'],
-            "Dinner": day_recipes[2]['name'],
-            "Estimated Calories": round(total_calories),
-            "Target Calories": daily_needs['calories']
-        }
+    # The finalized_plan from DB will have day keys like '1', '2', etc.
+    for day_key, slots in finalized_plan.items():
+        if not day_key.isdigit():  # Skip metadata like _id or patient_id
+            continue
+
+        day_label = f"Day {day_key}"
+        plan[day_label] = {}
+
+        # In the finalized plan, each slot has one chosen meal object
+        for slot_name, meal in slots.items():
+            slot_label = slot_name.capitalize()
+            plan[day_label][slot_label] = meal.get('name') if meal else "Not specified"
+
+        # Calculate estimated calories from the chosen meals for the day
+        try:
+            est_cal = sum(meal.get('cal', 0) for meal in slots.values() if meal)
+        except Exception:
+            est_cal = 0
+        plan[day_label]["Estimated Calories"] = round(est_cal)
+        plan[day_label]["Target Calories"] = daily_needs.get('calories_kcal', 0)
+
     return plan
+
 

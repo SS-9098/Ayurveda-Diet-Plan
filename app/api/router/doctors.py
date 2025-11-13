@@ -9,6 +9,12 @@ from datetime import datetime
 from uuid import uuid4
 import string
 from typing import Dict
+from app.models.recipe_models import DayMeals,FinalDayMeals
+import secrets
+import logging
+logging.basicConfig(level=logging.INFO)
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -98,13 +104,26 @@ async def generate_ingredient_list_for_patient(
     patient_id: str,
     accounts_coll: AsyncIOMotorCollection = Depends(get_collection("accounts"))
 ):
-    """Generates the initial ingredient chart based on a patient's profile."""
+    """Generates the initial ingredient chart based on a patient's profile and saves the approved lists to the patient document."""
     patient = await accounts_coll.find_one({"_id": patient_id, "role": "patient"})
     if not patient:
         raise HTTPException(status_code=404, detail="Patient not found")
 
-    profile = patient.get('patient_profile', {})
-    return diet_service.generate_ingredient_list(profile.get('dosha_result', ''), profile.get('allergies', []))
+    profile = patient.get('patient_profile') or {}
+
+    chart_data = diet_service.generate_ingredient_list(profile.get('dosha_result', ''), profile.get('allergies', []))
+
+    # Merge into existing profile (or create a new one) and persist the approved lists safely
+    updated_profile = {**profile}
+    updated_profile['approved_favor_ingredients'] = chart_data['favor_ingredients']
+    updated_profile['approved_avoid_ingredients'] = chart_data['avoid_ingredients']
+
+    await accounts_coll.update_one(
+        {"_id": patient_id},
+        {"$set": {"patient_profile": updated_profile}}
+    )
+
+    return chart_data
 
 
 @router.get("/patients/{patient_id}/ingredient-chart/pdf")
@@ -156,31 +175,92 @@ async def update_patient_bio(
     return updated_patient
 
 
+@router.post("/patients/{patient_id}/create-recipe-plan", response_model=Dict[str, DayMeals])
+async def create_recipe_plan(
+    patient_id: str,
+    accounts_coll: AsyncIOMotorCollection = Depends(get_collection("accounts"))
+):
+    """
+    Generates a new recipe plan with alternatives for the patient.
+    Returns a mapping of day keys (e.g. "1") to DayMeals (breakfast/lunch/snacks/dinner).
+    """
+    projection = {
+        "patient_profile.biological_data": 1,
+        "patient_profile.daily_needs": 1,
+        "patient_profile.dosha_result": 1,
+        "patient_profile.allergies": 1,
+        "patient_profile.dietary_patterns": 1
+    }
+    patient = await accounts_coll.find_one({"_id": patient_id, "role": "patient"}, projection)
+    if not patient:
+        raise HTTPException(status_code=404, detail="Patient not found")
+
+    patient_profile = patient.get("patient_profile", {})
+    if not patient_profile.get("biological_data"):
+        raise HTTPException(status_code=400, detail="Biological data must be set before generating a recipe plan.")
+
+    recipe_options = diet_service.generate_recipe_plan_options(patient_profile)
+    if "error" in recipe_options:
+        raise HTTPException(status_code=400, detail=recipe_options["error"])
+
+    return recipe_options
+
+
+@router.post("/patients/{patient_id}/finalize-recipe-plan")
+async def finalize_recipe_plan(
+    patient_id: str,
+    finalized_plan: Dict[str, FinalDayMeals] = Body(...),
+    accounts_coll: AsyncIOMotorCollection = Depends(get_collection("accounts"))
+):
+    """
+    Saves the user-finalized recipe plan (validated as Dict[str, DayMeals]) to the database.
+    """
+    patient = await accounts_coll.find_one({"_id": patient_id, "role": "patient"})
+    if not patient:
+        raise HTTPException(status_code=404, detail="Patient not found")
+
+    # Convert validated Pydantic models to dicts for MongoDB storage
+    store_plan = {day: meals.dict() for day, meals in finalized_plan.items()}
+
+    await accounts_coll.update_one(
+        {"_id": patient_id},
+        {"$set": {"patient_profile.finalized_recipe_plan": store_plan}}
+    )
+    return {"message": "Recipe plan finalized and saved successfully."}
+
+
 @router.post("/patients/{patient_id}/recipe-plan/pdf")
 async def generate_recipe_plan_pdf(
     patient_id: str,
     accounts_coll: AsyncIOMotorCollection = Depends(get_collection("accounts"))
 ):
-    """Generates a 7-day recipe plan PDF based on patient's biological data."""
-    patient = await accounts_coll.find_one({"_id": patient_id, "role": "patient"})
+    """
+    Generates a PDF for the patient's FINALIZED recipe plan.
+    This endpoint fetches the finalized plan from the database and formats it for PDF output.
+    """
+    projection = {
+        "patient_profile.finalized_recipe_plan": 1,
+        "patient_profile.daily_needs": 1
+    }
+    patient = await accounts_coll.find_one({"_id": patient_id, "role": "patient"}, projection)
     if not patient:
         raise HTTPException(status_code=404, detail="Patient not found")
 
-    patient_profile = patient.get('patient_profile', {})
+    patient_profile = patient.get("patient_profile", {})
+    finalized_plan = patient_profile.get("finalized_recipe_plan")
+    daily_needs = patient_profile.get("daily_needs")
 
-    if not patient_profile.get('biological_data'):
-        raise HTTPException(status_code=400, detail="Biological data must be set for the patient before generating a recipe plan.")
+    if not finalized_plan:
+        raise HTTPException(status_code=400, detail="No finalized recipe plan found for this patient.")
+    if not daily_needs:
+        raise HTTPException(status_code=400, detail="Daily needs are not set for this patient.")
 
-    initial_list = diet_service.generate_ingredient_list(patient_profile.get('dosha_result', ''),
-                                                         patient_profile.get('allergies', []))
-    patient_profile['approved_favor_ingredients'] = initial_list['favor_ingredients']
-    patient_profile['approved_avoid_ingredients'] = initial_list['avoid_ingredients']
+    # Format the plan for the PDF service
+    formatted_plan = diet_service.format_finalized_plan_for_pdf(finalized_plan, daily_needs)
 
-    recipe_plan = diet_service.generate_recipe_plan(patient_profile)
+    if "error" in formatted_plan:
+        raise HTTPException(status_code=400, detail=formatted_plan["error"])
 
-    if "error" in recipe_plan:
-        raise HTTPException(status_code=400, detail=recipe_plan["error"])
-
-    pdf_buffer = report_service.create_recipe_plan_pdf(recipe_plan)
+    pdf_buffer = report_service.create_recipe_plan_pdf(formatted_plan)
     return StreamingResponse(pdf_buffer, media_type="application/pdf",
                              headers={"Content-Disposition": f"attachment; filename={patient_id}_recipe_plan.pdf"})

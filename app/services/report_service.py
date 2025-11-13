@@ -1,5 +1,5 @@
 # Logic for generating PDF reports
-from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import letter, landscape
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
@@ -56,17 +56,17 @@ def create_ingredient_pdf(favor_list: list[str], avoid_list: list[str]) -> Bytes
 
 def create_recipe_plan_pdf(plan: dict) -> BytesIO:
     buffer = BytesIO()
-    doc = SimpleDocTemplate(buffer, pagesize=letter)
+    doc = SimpleDocTemplate(buffer, pagesize=landscape(letter), leftMargin=24, rightMargin=24, topMargin=24, bottomMargin=24)
     styles = getSampleStyleSheet()
     title_style = styles['h1']
     title_style.alignment = 1
 
     story = [Paragraph("AyushMitra 7-Day Recipe Plan", title_style), Spacer(1, 24)]
 
-    plan_data = [['Day', 'Breakfast', 'Lunch', 'Dinner', 'Est. Calories']]
+    plan_data = [['Day', 'Breakfast', 'Lunch', 'Snacks','Dinner', 'Est. Calories']]
     for day, meals in plan.items():
         if "error" in meals: continue
-        plan_data.append([day, meals['Breakfast'], meals['Lunch'], meals['Dinner'], meals['Estimated Calories']])
+        plan_data.append([day, meals['Breakfast'], meals['Lunch'], meals['Snacks'],meals['Dinner'], meals['Estimated Calories']])
 
     table = Table(plan_data)
     table.setStyle(TableStyle([

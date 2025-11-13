@@ -1,41 +1,27 @@
+import logging
+import sys
 
+def show_messages(label):
+    logger = logging.getLogger()  # root logger
+    print(f"\n--- {label} (level={logging.getLevelName(logger.level)}, handlers={len(logger.handlers)}) ---")
+    logging.debug("debug message")
+    logging.info("info message")
+    logging.warning("warning message")
 
-def getCalories():
-    return 2000
+# 1) Default logging (no basicConfig): default level is WARNING
+show_messages("default (no basicConfig)")
 
-def getProtein():
-    return 50
+# 2) Configure once: sets root level to INFO and adds a StreamHandler
+logging.basicConfig(level=logging.INFO)
+show_messages("after basicConfig(level=INFO)")
 
-def getCarbohydrates():
-    return 275
+# 3) Attempt to reconfigure to DEBUG -> has no effect because handlers already exist
+logging.basicConfig(level=logging.DEBUG)  # no-op if handlers exist
+show_messages("after basicConfig(level=DEBUG) again (no-op)")
 
-def getFats():
-    return 70
+# 4) If you remove handlers, you can reconfigure
+for h in list(logging.getLogger().handlers):
+    logging.getLogger().removeHandler(h)
 
-def getFiber():
-    return 28
-
-def getSugar():
-    return 50
-
-def getSodium():
-    return 2300
-
-def getCholesterol():
-    return 300
-
-def getSaturatedFat():
-    return 20
-
-def getRecommendedDailyIntake():
-    return {
-        "calories": getCalories(),
-        "protein": getProtein(),
-        "carbohydrates": getCarbohydrates(),
-        "fats": getFats(),
-        "fiber": getFiber(),
-        "sugar": getSugar(),
-        "sodium": getSodium(),
-        "cholesterol": getCholesterol(),
-        "saturated_fat": getSaturatedFat()
-    }
+logging.basicConfig(level=logging.DEBUG)
+show_messages("after removing handlers and basicConfig(level=DEBUG)")

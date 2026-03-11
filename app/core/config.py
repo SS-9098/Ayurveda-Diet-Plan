@@ -4,9 +4,6 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     MONGO_URI: str
     AYUSHMITRA: str
-    GROQ1: str
-    GROQ2: str
-    GROQ3: str
     INGREDIENTS: str
     RECIPES: str
     ACCOUNTS: str

@@ -11,7 +11,7 @@ import time
 # 1) Load food database
 # ------------------
 
-def load_foods(csv_path, nuts=False, diary=False, veg=False, vegan=False):
+def load_foods(csv_path, nuts=False, dairy=False, veg=False, vegan=False):
     df = pd.read_csv(csv_path)
     foods = []
     for i, row in df.iterrows():
@@ -22,7 +22,7 @@ def load_foods(csv_path, nuts=False, diary=False, veg=False, vegan=False):
         if nuts:
             if row['nuts']:
                 continue
-        if diary:
+        if dairy:
             if row['diary']:
                 continue
         if veg:
